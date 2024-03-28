@@ -1,4 +1,5 @@
 import axios from "axios";
+import DealsAPI from "./deals/deals.api";
 import HealthAPI from "./health/health.api";
 
 const coreClient = axios.create({
@@ -7,6 +8,7 @@ const coreClient = axios.create({
 
 class API {
   static health = new HealthAPI(coreClient);
+  static deals = new DealsAPI(coreClient);
 }
 
 export default API;
