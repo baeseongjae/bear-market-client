@@ -3,7 +3,7 @@
 import PostForm from "@/components/PostForm";
 import { useState } from "react";
 
-function CreatePostForm() {
+function EditPostForm() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [location, setLocation] = useState<string>("");
@@ -26,9 +26,9 @@ function CreatePostForm() {
       setLocation={setLocation}
       setPrice={setPrice}
       onSubmit={handleSubmitCreatePost}
-      buttonLabel="판매글 작성하기"
+      buttonLabel="판매글 수정하기"
     />
   );
 }
 
-export default CreatePostForm;
+export default EditPostForm;

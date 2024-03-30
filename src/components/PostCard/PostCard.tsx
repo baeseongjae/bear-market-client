@@ -8,7 +8,7 @@ interface PostCardProps {
 
 function PostCard({ deal }: PostCardProps) {
   return (
-    <Link href="/">
+    <Link href={`/deals/${deal.id}`}>
       <div className="w-72 h-72 bg-blue-200"></div>
       <div>
         <h6 className="pt-4 text-lg">{deal.title}</h6>
