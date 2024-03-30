@@ -13,6 +13,13 @@ class DealsAPI {
 
     return data;
   };
+
+  getDeal = async (dealId: number) => {
+    const response = await this.coreClient.get(`/deals/${dealId}`);
+    const data = response.data;
+
+    return data;
+  };
 }
 
 export default DealsAPI;
