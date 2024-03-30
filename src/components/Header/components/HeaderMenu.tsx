@@ -8,7 +8,7 @@ function HeaderMenu() {
           <Link href="/">구입하기</Link>
         </li>
         <li>
-          <Link href="/">판매하기</Link>
+          <Link href="/deals/create">판매하기</Link>
         </li>
         <li>
           <Link href="/">내 판매글</Link>
