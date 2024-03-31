@@ -32,8 +32,12 @@ function PostForm({
     <form onSubmit={onSubmit} className="flex flex-col pb-12">
       <ul className="flex flex-col gap-y-4">
         <li className="flex flex-col">
-          <label htmlFor="">글 제목</label>
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+          <Input
+            label="글 제목"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
         </li>
         <li className="flex flex-col">
           <label htmlFor="">글 내용</label>
@@ -47,15 +51,20 @@ function PostForm({
           />
         </li>
         <li className="flex flex-col">
-          <label htmlFor="">직거래 위치</label>
           <Input
+            label="직거래 위치"
+            type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
         </li>
         <li className="flex flex-col">
-          <label htmlFor="">판매 가격</label>
-          <Input value={price} onChange={(e) => setPrice(e.target.value)} />
+          <Input
+            label="판매 가격"
+            type="text"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          />
         </li>
         <li className="flex flex-col">
           <label htmlFor="">이미지</label>

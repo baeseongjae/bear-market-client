@@ -1,11 +1,19 @@
-import { ComponentProps } from "react";
+import { ComponentProps, useId } from "react";
 
-interface InputProps extends ComponentProps<"input"> {}
+interface InputProps extends ComponentProps<"input"> {
+  label: string;
+}
 
-function Input({ ...props }: InputProps) {
+function Input({ label, ...props }: InputProps) {
+  const id = useId();
   const combinedClassName = `h-12 border border-slate-300 focus:border-violet-500 outline-none transition rounded-lg pl-4`;
 
-  return <input type="text" className={combinedClassName} {...props} />;
+  return (
+    <>
+      <label htmlFor={id}>{label}</label>
+      <input id={id} className={combinedClassName} {...props} />
+    </>
+  );
 }
 
 export default Input;
