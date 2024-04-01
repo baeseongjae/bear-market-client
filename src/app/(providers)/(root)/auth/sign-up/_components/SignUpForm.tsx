@@ -1,15 +1,35 @@
 "use client";
 
+import API from "@/api/index.api";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function SignUpForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordCheck, setPasswordCheck] = useState<string>("");
+  const [isClickedSignUp, setIsClickedSignUp] = useState<boolean>(false);
 
-  const handleClickSignUp = () => {};
+  const handleClickSignUp = async () => {
+    setIsClickedSignUp(true);
+  };
+
+  useEffect(() => {
+    const signUpAsync = async () => {
+      if (isClickedSignUp) {
+        try {
+          const data = await API.auth.signUp({ email, password });
+          console.log("성공!! data는 ", data);
+        } catch (error) {
+          console.error("실패", error);
+        } finally {
+          setIsClickedSignUp(false);
+        }
+      }
+    };
+    signUpAsync();
+  }, [isClickedSignUp]);
 
   return (
     <form
