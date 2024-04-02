@@ -74,7 +74,7 @@ function SignUpForm() {
           />
         </li>
       </ul>
-      <Button onClick={handleClickSignUp} label="회원가입하기" />
+      <Button onClick={handleClickSignUp}>회원가입하기</Button>
     </form>
   );
 }
