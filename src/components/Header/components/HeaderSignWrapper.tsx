@@ -1,10 +1,17 @@
 "use client";
 
+import LogInModal from "@/app/(providers)/(root)/auth/sign-up/_components/LogInModal";
 import { useAuth } from "@/contexts/auth.context";
+import { useModal } from "@/contexts/modal.context";
 import Link from "next/link";
 
 function HeaderSignWrapper() {
   const auth = useAuth();
+  const modal = useModal();
+
+  const handleClickLogIn = () => {
+    modal.open(<LogInModal />);
+  };
 
   const handleClickLogOut = () => {
     auth.setIsLoggedIn(false);
@@ -23,7 +30,7 @@ function HeaderSignWrapper() {
             <Link href="/auth/sign-up">회원가입</Link>
           </li>
           <li>
-            <button>로그인</button>
+            <button onClick={handleClickLogIn}>로그인</button>
           </li>
         </>
       )}
