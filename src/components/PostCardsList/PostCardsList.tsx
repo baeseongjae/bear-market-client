@@ -6,7 +6,6 @@ interface PostCardsListProps {
 }
 
 function PostCardsList({ deals }: PostCardsListProps) {
-  console.log(deals);
   return (
     <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-8 gap-y-12">
       {deals?.map((deal) => (
