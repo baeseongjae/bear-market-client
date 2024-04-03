@@ -20,6 +20,13 @@ class DealsAPI {
 
     return data;
   };
+
+  getMyDeals = async () => {
+    const response = await this.coreClient.get("/my/deals");
+    const data = response.data;
+
+    return data;
+  };
 }
 
 export default DealsAPI;

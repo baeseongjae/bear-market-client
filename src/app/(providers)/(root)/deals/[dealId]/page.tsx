@@ -3,7 +3,7 @@ import Page from "@/components/Page";
 import formatPrice from "@/utils/formatPrice.util";
 import Link from "next/link";
 
-async function PostDetailPage(props: { params: { dealId: string } }) {
+async function DealDetailPage(props: { params: { dealId: string } }) {
   const dealId = Number(props.params.dealId);
   const data = await API.deals.getDeal(dealId);
   const deal = data.deal;
@@ -40,4 +40,4 @@ async function PostDetailPage(props: { params: { dealId: string } }) {
   );
 }
 
-export default PostDetailPage;
+export default DealDetailPage;

@@ -2,7 +2,7 @@ import Heading from "@/components/Heading";
 import Page from "@/components/Page";
 import CreatePostForm from "./_components/CreatePostForm";
 
-function CreatePostPage() {
+function CreateDealPage() {
   return (
     <Page>
       <section className="max-w-lg mx-auto">
@@ -13,4 +13,4 @@ function CreatePostPage() {
   );
 }
 
-export default CreatePostPage;
+export default CreateDealPage;

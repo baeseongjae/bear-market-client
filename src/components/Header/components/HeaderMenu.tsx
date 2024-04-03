@@ -11,7 +11,7 @@ function HeaderMenu() {
           <Link href="/deals/create">판매하기</Link>
         </li>
         <li>
-          <Link href="/">내 판매글</Link>
+          <Link href="/my/deals">내 판매글</Link>
         </li>
       </ul>
     </nav>

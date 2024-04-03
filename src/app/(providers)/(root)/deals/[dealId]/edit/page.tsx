@@ -2,7 +2,7 @@ import Heading from "@/components/Heading";
 import Page from "@/components/Page";
 import EditPostForm from "./_components/EditPostForm";
 
-function EditPostPage() {
+function EditDealPage() {
   return (
     <Page>
       <section className="max-w-lg mx-auto">
@@ -13,4 +13,4 @@ function EditPostPage() {
   );
 }
 
-export default EditPostPage;
+export default EditDealPage;

@@ -11,15 +11,21 @@ class AuthAPI {
   signUp = async (signUpDto: SignUpDto) => {
     const response = await this.coreClient.post("/auth/sign-up", signUpDto);
     const data = response.data;
+    const accessToken = data.accessToken;
 
-    return data;
+    this.coreClient.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+    return accessToken;
   };
 
   logIn = async (logInDto: LogInDto) => {
     const response = await this.coreClient.post("/auth/log-in", logInDto);
     const data = response.data;
+    const accessToken = data.accessToken;
 
-    return data;
+    this.coreClient.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+    return accessToken;
   };
 }
 
