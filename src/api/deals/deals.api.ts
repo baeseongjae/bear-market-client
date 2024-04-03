@@ -1,4 +1,5 @@
 import { AxiosInstance } from "axios";
+import { createDealDto } from "./deals.dto";
 
 class DealsAPI {
   private coreClient: AxiosInstance;
@@ -23,6 +24,13 @@ class DealsAPI {
 
   getMyDeals = async () => {
     const response = await this.coreClient.get("/my/deals");
+    const data = response.data;
+
+    return data;
+  };
+
+  createDeal = async (createDealDto: createDealDto) => {
+    const response = await this.coreClient.post("/deals/create", createDealDto);
     const data = response.data;
 
     return data;
