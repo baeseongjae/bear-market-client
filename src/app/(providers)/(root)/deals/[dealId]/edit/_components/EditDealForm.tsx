@@ -1,9 +1,9 @@
 "use client";
 
-import PostForm from "@/components/PostForm";
+import DealForm from "@/components/DealForm";
 import { useState } from "react";
 
-function EditPostForm() {
+function EditDealForm() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [location, setLocation] = useState<string>("");
@@ -16,7 +16,7 @@ function EditPostForm() {
   };
 
   return (
-    <PostForm
+    <DealForm
       title={title}
       content={content}
       location={location}
@@ -31,4 +31,4 @@ function EditPostForm() {
   );
 }
 
-export default EditPostForm;
+export default EditDealForm;

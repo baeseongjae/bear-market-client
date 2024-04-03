@@ -3,7 +3,7 @@ import Input from "../Input";
 
 type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
-interface PostFormProps {
+interface DealFormProps {
   title: string;
   content: string;
   location: string;
@@ -16,7 +16,7 @@ interface PostFormProps {
   buttonLabel: string;
 }
 
-function PostForm({
+function DealForm({
   title,
   content,
   location,
@@ -27,7 +27,7 @@ function PostForm({
   setPrice,
   onSubmit,
   buttonLabel,
-}: PostFormProps) {
+}: DealFormProps) {
   return (
     <form onSubmit={onSubmit} className="flex flex-col pb-12">
       <ul className="flex flex-col gap-y-4">
@@ -81,4 +81,4 @@ function PostForm({
   );
 }
 
-export default PostForm;
+export default DealForm;

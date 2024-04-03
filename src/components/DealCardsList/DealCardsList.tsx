@@ -1,20 +1,20 @@
 import { Deal } from "@/types/deals.type";
-import PostCard from "../PostCard";
+import DealCard from "../DealCard";
 
-interface PostCardsListProps {
+interface DealCardsListProps {
   deals: Deal[];
 }
 
-function PostCardsList({ deals }: PostCardsListProps) {
+function DealCardsList({ deals }: DealCardsListProps) {
   return (
     <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-8 gap-y-12">
       {deals?.map((deal) => (
         <li key={deal.id}>
-          <PostCard deal={deal} />
+          <DealCard deal={deal} />
         </li>
       ))}
     </ul>
   );
 }
 
-export default PostCardsList;
+export default DealCardsList;

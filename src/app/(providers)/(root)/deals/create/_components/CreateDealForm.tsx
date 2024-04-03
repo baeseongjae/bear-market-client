@@ -1,9 +1,16 @@
 "use client";
 
-import PostForm from "@/components/PostForm";
+import API from "@/api/index.api";
+import DealForm from "@/components/DealForm";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-function CreatePostForm() {
+function CreateDealForm() {
+  const { mutateAsync: createDeal } = useMutation({
+    mutationFn: API.deals.createDeal,
+  });
+  const router = useRouter();
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [location, setLocation] = useState<string>("");
@@ -12,11 +19,12 @@ function CreatePostForm() {
 
   const handleSubmitCreatePost = () => {
     // 폼 제출
+    // createDeal({ title, content, location, price });
     console.log(title, content);
   };
 
   return (
-    <PostForm
+    <DealForm
       title={title}
       content={content}
       location={location}
@@ -31,4 +39,4 @@ function CreatePostForm() {
   );
 }
 
-export default CreatePostForm;
+export default CreateDealForm;

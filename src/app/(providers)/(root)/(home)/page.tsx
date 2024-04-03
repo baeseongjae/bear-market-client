@@ -1,7 +1,7 @@
 import API from "@/api/index.api";
+import DealCardsList from "@/components/DealCardsList";
 import Heading from "@/components/Heading";
 import Page from "@/components/Page";
-import PostCardsList from "@/components/PostCardsList";
 
 async function HomePage() {
   const data = await API.deals.getDeals();
@@ -11,7 +11,7 @@ async function HomePage() {
     <Page>
       <section>
         <Heading>전체 판매글</Heading>
-        <PostCardsList deals={deals} />
+        <DealCardsList deals={deals} />
       </section>
     </Page>
   );

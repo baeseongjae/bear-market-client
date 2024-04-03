@@ -1,9 +1,9 @@
 "use client";
 
 import API from "@/api/index.api";
+import DealCardsList from "@/components/DealCardsList";
 import Heading from "@/components/Heading";
 import Page from "@/components/Page";
-import PostCardsList from "@/components/PostCardsList";
 import { useQuery } from "@tanstack/react-query";
 
 function MyDealsPage() {
@@ -17,7 +17,7 @@ function MyDealsPage() {
     <Page>
       <section>
         <Heading>내가 쓴 판매글</Heading>
-        <PostCardsList deals={myDeals} />
+        <DealCardsList deals={myDeals} />
       </section>
     </Page>
   );
