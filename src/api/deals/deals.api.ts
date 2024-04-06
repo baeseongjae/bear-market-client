@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { createDealDto } from "./deals.dto";
+import { CreateDealDto, UpdateDealDto } from "./deals.dto";
 
 class DealsAPI {
   private coreClient: AxiosInstance;
@@ -29,8 +29,18 @@ class DealsAPI {
     return data;
   };
 
-  createDeal = async (createDealDto: createDealDto) => {
+  createDeal = async (createDealDto: CreateDealDto) => {
     const response = await this.coreClient.post("/deals/create", createDealDto);
+    const data = response.data;
+
+    return data;
+  };
+
+  updateDeal = async (updateDealDto: UpdateDealDto, dealId: number) => {
+    const response = await this.coreClient.patch(
+      `/deals/${dealId}/edit`,
+      updateDealDto
+    );
     const data = response.data;
 
     return data;

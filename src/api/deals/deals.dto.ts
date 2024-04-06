@@ -1,3 +1,5 @@
 import { DealForm } from "@/types/dealForm.type";
 
-export type createDealDto = DealForm;
+export type CreateDealDto = DealForm;
+
+export type UpdateDealDto = DealForm;
