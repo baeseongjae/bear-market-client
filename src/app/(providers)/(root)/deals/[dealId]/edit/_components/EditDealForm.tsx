@@ -4,11 +4,13 @@ import { UpdateDealDto } from "@/api/deals/deals.dto";
 import API from "@/api/index.api";
 import DealForm from "@/components/DealForm";
 import { Deal } from "@/types/deals.type";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useEffect, useState } from "react";
 
 function EditDealForm({ dealId }: { dealId: number }) {
+  const queryClient = useQueryClient();
+
   const {
     data: dealData,
     isLoading,
@@ -17,6 +19,7 @@ function EditDealForm({ dealId }: { dealId: number }) {
     queryKey: ["deal", dealId],
     queryFn: () => API.deals.getDeal(dealId),
   });
+
   const { mutateAsync: updateDeal } = useMutation<
     Deal,
     Error,
@@ -24,6 +27,12 @@ function EditDealForm({ dealId }: { dealId: number }) {
   >({
     mutationFn: ({ updateDealDto, dealId }) =>
       API.deals.updateDeal(updateDealDto, dealId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        exact: true,
+        queryKey: ["deal", dealId],
+      }); // 'deal' 쿼리 캐시 무효화
+    },
   });
 
   const router = useRouter();
