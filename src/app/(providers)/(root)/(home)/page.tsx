@@ -16,5 +16,6 @@ async function HomePage() {
     </Page>
   );
 }
+export const revalidate = 5; // 5초에 한번씩 업데이트
 
 export default HomePage;
