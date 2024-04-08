@@ -6,13 +6,11 @@ import Modal from "@/components/Modal";
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 function LogInModal() {
   const auth = useAuth();
   const modal = useModal();
-  const router = useRouter();
   const { mutateAsync: logIn } = useMutation({ mutationFn: API.auth.logIn });
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -25,7 +23,6 @@ function LogInModal() {
       await logIn({ email, password });
       auth.setIsLoggedIn(true);
       alert("로그인 성공!");
-      router.push("/");
       modal.close();
     } catch (e) {
       alert("로그인 실패!");
