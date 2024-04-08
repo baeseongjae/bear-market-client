@@ -27,6 +27,13 @@ class AuthAPI {
 
     return accessToken;
   };
+
+  getUserByEmail = async () => {
+    const response = await this.coreClient.get("/auth/user-email");
+    const data = response.data;
+
+    return data;
+  };
 }
 
 export default AuthAPI;

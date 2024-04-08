@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer utilities {
+  .a11y-hidden {
+    @apply overflow-hidden absolute;
+    clip: rect(0, 0, 0, 0);
+    @apply w-px h-px m-[-1px] border-0 p-0;
+  }
 }
 
 html,
