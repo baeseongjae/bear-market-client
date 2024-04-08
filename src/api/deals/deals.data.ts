@@ -14,3 +14,4 @@ export type GetMyDealsData = {
 
 export type CreateDealData = GetDealData;
 export type UpdateDealData = GetDealData;
+export type DeleteDealData = GetDealData;
