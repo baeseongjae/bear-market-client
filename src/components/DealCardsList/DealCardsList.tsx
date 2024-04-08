@@ -1,4 +1,4 @@
-import { Deal } from "@/types/deals.type";
+import { Deal } from "@/types/Deal.type";
 import DealCard from "../DealCard";
 
 interface DealCardsListProps {

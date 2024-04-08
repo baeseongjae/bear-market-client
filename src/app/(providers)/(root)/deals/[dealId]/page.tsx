@@ -5,9 +5,7 @@ import ButtonWrapperInDealsDetail from "./_components/ButtonWrapperInDealsDetail
 
 async function DealDetailPage(props: { params: { dealId: string } }) {
   const dealId = Number(props.params.dealId);
-  const data = await API.deals.getDeal(dealId);
-  const deal = data.deal;
-  console.log(deal);
+  const deal = await API.deals.getDeal(dealId);
 
   return (
     <Page>

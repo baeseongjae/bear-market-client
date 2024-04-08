@@ -1,4 +1,4 @@
-import { DealForm } from "@/types/dealForm.type";
+import { DealForm } from "@/types/DealForm.type";
 
 export type CreateDealDto = DealForm;
 

@@ -1,4 +1,4 @@
-import { Deal } from "@/types/deals.type";
+import { Deal } from "@/types/Deal.type";
 import formatPrice from "@/utils/formatPrice.util";
 import Link from "next/link";
 

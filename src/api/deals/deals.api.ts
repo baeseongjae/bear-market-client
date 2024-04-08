@@ -1,4 +1,12 @@
+import { Response } from "@/types/Response.type";
 import { AxiosInstance } from "axios";
+import {
+  CreateDealData,
+  GetDealData,
+  GetDealsData,
+  GetMyDealsData,
+  UpdateDealData,
+} from "./deals.data";
 import { CreateDealDto, UpdateDealDto } from "./deals.dto";
 
 class DealsAPI {
@@ -9,41 +17,65 @@ class DealsAPI {
   }
 
   getDeals = async () => {
-    const response = await this.coreClient.get("/deals");
+    const response = await this.coreClient.get<Response<GetDealsData>>(
+      "/deals"
+    );
     const data = response.data;
+    if (!data.success) throw new Error(data.error.message);
 
-    return data;
+    const { deals } = data.result;
+
+    return deals;
   };
 
   getDeal = async (dealId: number) => {
-    const response = await this.coreClient.get(`/deals/${dealId}`);
+    const response = await this.coreClient.get<Response<GetDealData>>(
+      `/deals/${dealId}`
+    );
     const data = response.data;
+    if (!data.success) throw new Error(data.error.message);
 
-    return data;
+    const { deal } = data.result;
+
+    return deal;
   };
 
   getMyDeals = async () => {
-    const response = await this.coreClient.get("/my/deals");
+    const response = await this.coreClient.get<Response<GetMyDealsData>>(
+      "/my/deals"
+    );
     const data = response.data;
+    if (!data.success) throw new Error(data.error.message);
 
-    return data;
+    const { myDeals } = data.result;
+
+    return myDeals;
   };
 
   createDeal = async (createDealDto: CreateDealDto) => {
-    const response = await this.coreClient.post("/deals/create", createDealDto);
+    const response = await this.coreClient.post<Response<CreateDealData>>(
+      "/deals/create",
+      createDealDto
+    );
     const data = response.data;
+    if (!data.success) throw new Error(data.error.message);
 
-    return data;
+    const { deal } = data.result;
+
+    return deal;
   };
 
   updateDeal = async (updateDealDto: UpdateDealDto, dealId: number) => {
-    const response = await this.coreClient.patch(
+    const response = await this.coreClient.patch<Response<UpdateDealData>>(
       `/deals/${dealId}/edit`,
       updateDealDto
     );
     const data = response.data;
+    if (!data.success) throw new Error(data.error.message);
 
-    return data;
+    const { deal } = data.result;
+
+    return deal;
   };
 }
 

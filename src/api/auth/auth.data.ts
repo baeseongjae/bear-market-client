@@ -5,8 +5,10 @@ export type SignUpData = {
 export type LogInData = SignUpData;
 
 export type GetUserData = {
-  id: string;
-  email: string;
-  encryptedPassword: string;
-  createdAt: string;
+  userByEmail: {
+    id: string;
+    email: string;
+    encryptedPassword: string;
+    createdAt: string;
+  };
 };

@@ -1,12 +1,13 @@
 export type Deal = {
   id: number;
-  authorId: string;
+  authorEmail: string;
   title: string;
-  price: string;
   content: string;
-  imgSrc: string;
+  price: string;
   location: string;
+  imgSrc?: string;
+  views: number;
+  interest: number;
   createdAt: string;
   updatedAt: string;
-  views: number;
 };

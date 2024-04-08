@@ -3,7 +3,7 @@
 import { UpdateDealDto } from "@/api/deals/deals.dto";
 import API from "@/api/index.api";
 import DealForm from "@/components/DealForm";
-import { Deal } from "@/types/deals.type";
+import { Deal } from "@/types/Deal.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useEffect, useState } from "react";
@@ -43,7 +43,7 @@ function EditDealForm({ dealId }: { dealId: number }) {
   const [price, setPrice] = useState<string>("");
   const [image, setImage] = useState<File>();
 
-  const originalDeal = dealData?.deal;
+  const originalDeal = dealData;
 
   // 마운트 될때 이전 상태값 세팅
   useEffect(() => {

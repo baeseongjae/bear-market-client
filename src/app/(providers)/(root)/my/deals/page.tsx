@@ -7,18 +7,22 @@ import Page from "@/components/Page";
 import { useQuery } from "@tanstack/react-query";
 
 function MyDealsPage() {
-  const { data: data } = useQuery({
+  const { data: data, isLoading } = useQuery({
     queryKey: ["myDeals"],
     queryFn: API.deals.getMyDeals,
   });
-  const myDeals = data?.myDeals;
+  const myDeals = data;
 
   return (
     <Page>
-      <section>
-        <Heading>내가 쓴 판매글</Heading>
-        <DealCardsList deals={myDeals} />
-      </section>
+      {isLoading ? (
+        <p>로딩중...</p>
+      ) : (
+        <section>
+          <Heading>내가 쓴 판매글</Heading>
+          <DealCardsList deals={myDeals || []} />
+        </section>
+      )}
     </Page>
   );
 }

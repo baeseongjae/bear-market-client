@@ -52,8 +52,9 @@ class AuthAPI {
 
     if (!data.success) throw new Error(data.error.message);
 
-    const { email } = data.result;
-    return email;
+    const { userByEmail: user } = data.result;
+
+    return user;
   };
 }
 

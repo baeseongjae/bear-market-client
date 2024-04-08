@@ -16,14 +16,14 @@ function ButtonWrapperInDealsDetail({
   // 로그인한 유저 이메일 정보 추출하여 => 해당 판매글의 authorEmail와 비교
   const { data: userData } = useQuery({
     queryKey: ["user"],
-    queryFn: API.auth.getUserByEmail,
+    queryFn: API.auth.getUserEmail,
   });
 
-  const user = userData?.userByEmail;
+  const email = userData?.email;
 
   return (
     <div className="flex justify-end gap-x-8">
-      {user?.email === authorEmail ? (
+      {email === authorEmail ? (
         <>
           <Link
             href={`./${dealId}/edit`}

@@ -4,8 +4,7 @@ import Heading from "@/components/Heading";
 import Page from "@/components/Page";
 
 async function HomePage() {
-  const data = await API.deals.getDeals();
-  const deals = data?.deals;
+  const deals = await API.deals.getDeals();
 
   return (
     <Page>
