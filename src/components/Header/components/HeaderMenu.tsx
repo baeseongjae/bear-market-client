@@ -13,6 +13,9 @@ function HeaderMenu() {
         <li>
           <Link href="/my/deals">내 판매글</Link>
         </li>
+        <li>
+          <Link href="/my/interests">내 관심목록</Link>
+        </li>
       </ul>
     </nav>
   );
