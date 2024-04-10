@@ -1,6 +1,7 @@
 import { Deal } from "@/types/Deal.type";
 import formatPrice from "@/utils/formatPrice.util";
 import Link from "next/link";
+import InterestHeart from "../InterestHeart/InterestHeart";
 
 interface DealCardProps {
   deal: Deal;
@@ -14,6 +15,12 @@ function DealCard({ deal }: DealCardProps) {
         <h6 className="pt-4 text-lg">{deal.title}</h6>
         <p className="text-xl font-bold pb-2">{formatPrice(deal.price)}</p>
         <p>{deal.location}</p>
+        <div className="flex gap-x-1 items-center">
+          <span>관심 {deal.interest}</span>
+          <span>∙</span>
+          <span>조회 {deal.views}</span>
+          <InterestHeart dealId={deal.id} />
+        </div>
       </div>
     </Link>
   );
