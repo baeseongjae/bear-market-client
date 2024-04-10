@@ -6,9 +6,16 @@ import {
   GetDealData,
   GetDealsData,
   GetMyDealsData,
+  GetMyInterestedDealsData,
+  GetMyInterestsData,
+  ToggleInterestData,
   UpdateDealData,
 } from "./deals.data";
-import { CreateDealDto, UpdateDealDto } from "./deals.dto";
+import {
+  CreateDealDto,
+  GetMyInterestedDealsDto,
+  UpdateDealDto,
+} from "./deals.dto";
 
 class DealsAPI {
   private coreClient: AxiosInstance;
@@ -89,6 +96,42 @@ class DealsAPI {
     const { deal } = data.result;
 
     return deal;
+  };
+
+  toggleInterest = async (dealId: number) => {
+    const response = await this.coreClient.patch<Response<ToggleInterestData>>(
+      `/deals/${dealId}/interest`
+    );
+    const data = response.data;
+    if (!data.success) throw new Error(data.error.message);
+
+    const { deal } = data.result;
+
+    return deal;
+  };
+
+  getMyInterests = async () => {
+    const response = await this.coreClient.get<Response<GetMyInterestsData>>(
+      "/my/interests"
+    );
+    const data = response.data;
+    if (!data.success) throw new Error(data.error.message);
+
+    const { myInterests } = data.result;
+
+    return myInterests;
+  };
+
+  getMyInterestedDeals = async (dto: GetMyInterestedDealsDto) => {
+    const response = await this.coreClient.post<
+      Response<GetMyInterestedDealsData>
+    >("/my/interested-deals", dto);
+    const data = response.data;
+    if (!data.success) throw new Error(data.error.message);
+
+    const { myInterestedDeals } = data.result;
+
+    return myInterestedDeals;
   };
 }
 
