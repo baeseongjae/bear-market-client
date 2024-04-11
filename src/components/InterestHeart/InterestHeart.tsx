@@ -32,6 +32,7 @@ function InterestHeart({ dealId, ...props }: InterestHeartProps) {
   });
   const [isClickedInterest, setIsClickedInterest] = useState<boolean>(false);
 
+  // 처음 마운트시 해당유저의 관심버튼토글 서버상태 동기화.
   useEffect(() => {
     if (myInterests && !isLoading) {
       const isInterested = myInterests.some(

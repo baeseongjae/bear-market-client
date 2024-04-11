@@ -25,3 +25,7 @@ export type GetMyInterestsData = {
 export type GetMyInterestedDealsData = {
   myInterestedDeals: Deal[];
 };
+
+export type UpdateViewsData = {
+  updatedViews: number;
+};

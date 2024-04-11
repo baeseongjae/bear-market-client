@@ -10,6 +10,7 @@ import {
   GetMyInterestsData,
   ToggleInterestData,
   UpdateDealData,
+  UpdateViewsData,
 } from "./deals.data";
 import {
   CreateDealDto,
@@ -132,6 +133,19 @@ class DealsAPI {
     const { myInterestedDeals } = data.result;
 
     return myInterestedDeals;
+  };
+
+  updateViews = async (dealId: number) => {
+    const response = await this.coreClient.patch<Response<UpdateViewsData>>(
+      `/deals/${dealId}/views`,
+      dealId
+    );
+    const data = response.data;
+    if (!data.success) throw new Error(data.error.message);
+
+    const { updatedViews } = data.result;
+
+    return updatedViews;
   };
 }
 
