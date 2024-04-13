@@ -9,7 +9,7 @@ function Button({
   className,
   ...props
 }: PropsWithChildren<ButtonProps>) {
-  const combinedClassName = `bg-violet-500 text-white font-semibold h-12 mt-10 transition hover:-translate-y-1 active:translate-y-0 rounded-lg ${className}`;
+  const combinedClassName = `bg-pink-500 text-white font-semibold h-12 mt-10 transition hover:-translate-y-1 active:translate-y-0 rounded-lg ${className}`;
 
   return (
     <button className={combinedClassName} {...props}>

@@ -8,6 +8,9 @@
     clip: rect(0, 0, 0, 0);
     @apply w-px h-px m-[-1px] border-0 p-0;
   }
+  .selected {
+    @apply text-white bg-pink-500 border-[#E6E6E6] drop-shadow-[0px_0px_2px_#db0d97] border-[0.7px] font-bold;
+  }
 }
 
 html,

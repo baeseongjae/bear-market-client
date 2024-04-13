@@ -9,7 +9,7 @@ async function HomePage() {
   return (
     <Page>
       <section>
-        <Heading>전체 판매글</Heading>
+        <Heading className="mb-3">전체 판매글</Heading>
         <SortedDealCardsList deals={deals} />
       </section>
     </Page>
