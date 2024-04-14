@@ -1,1 +1,4 @@
-export { default } from "./Button";
+export { default as Button } from "./Button";
+export { default as ContainerButton } from "./ContainerButton";
+export { default as GhostButton } from "./GhostButton";
+export { default as SubmitButton } from "./SubmitButton";
