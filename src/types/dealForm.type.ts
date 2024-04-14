@@ -3,5 +3,5 @@ export type DealForm = {
   content: string;
   location: string;
   price: string;
-  imgSrc?: string;
+  imgSrc?: File;
 };

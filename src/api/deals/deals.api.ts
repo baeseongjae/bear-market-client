@@ -12,11 +12,7 @@ import {
   UpdateDealData,
   UpdateViewsData,
 } from "./deals.data";
-import {
-  CreateDealDto,
-  GetMyInterestedDealsDto,
-  UpdateDealDto,
-} from "./deals.dto";
+import { GetMyInterestedDealsDto, UpdateDealDto } from "./deals.dto";
 
 class DealsAPI {
   private coreClient: AxiosInstance;
@@ -61,10 +57,10 @@ class DealsAPI {
     return myDeals;
   };
 
-  createDeal = async (createDealDto: CreateDealDto) => {
+  createDeal = async (formData: FormData) => {
     const response = await this.coreClient.post<Response<CreateDealData>>(
       "/deals/create",
-      createDealDto
+      formData
     );
     const data = response.data;
     if (!data.success) throw new Error(data.error.message);

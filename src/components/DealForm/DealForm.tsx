@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Input from "../Input";
 
 type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
@@ -8,10 +8,12 @@ interface DealFormProps {
   content: string;
   location: string;
   price: string;
+  image: File | null;
   setTitle: SetState<string>;
   setContent: SetState<string>;
   setLocation: SetState<string>;
   setPrice: SetState<string>;
+  setImage: SetState<File | null>;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   buttonLabel: string;
 }
@@ -21,13 +23,28 @@ function DealForm({
   content,
   location,
   price,
+  image,
   setTitle,
   setContent,
   setLocation,
   setPrice,
+  setImage,
   onSubmit,
   buttonLabel,
 }: DealFormProps) {
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const handleClickCameraIcon = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleSelectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && file.type.startsWith("image/")) {
+      setImage(file);
+      setImageUrl(URL.createObjectURL(file));
+    }
+  };
   return (
     <form onSubmit={onSubmit} className="flex flex-col pb-12">
       <ul className="flex flex-col gap-y-4">
@@ -67,8 +84,40 @@ function DealForm({
           />
         </li>
         <li className="flex flex-col">
-          <label htmlFor="">이미지</label>
-          <input type="file" />
+          <label htmlFor="image">이미지</label>
+          <input
+            type="file"
+            id="image"
+            onChange={(e) => setImage(e.target.files?.[0] || null)}
+            className="h-12 border border-slate-300 focus:border-black outline-none transition rounded-md pl-4"
+          />
+          {/* <div className="w-32 h-32 mx-auto relative">
+            <div className="w-full h-full rounded-full bg-neutral-30 mx-auto flex relative overflow-hidden">
+              {imageUrl && (
+                <Image
+                  src={imageUrl}
+                  alt="이미지"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              )}
+            </div>
+            <button type="button" onClick={handleClickCameraIcon}>
+              <Image
+                src="/assets/create_deal_page/camera.svg"
+                alt="카메라"
+                width={36}
+                height={36}
+                className="absolute bottom-0 right-2"
+              />
+              <input
+                ref={fileInputRef}
+                type="file"
+                onChange={handleSelectImage}
+                className="a11y-hidden"
+              />
+            </button>
+          </div> */}
         </li>
       </ul>
       <button

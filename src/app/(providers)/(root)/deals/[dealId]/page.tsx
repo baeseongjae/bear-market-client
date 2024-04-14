@@ -1,6 +1,7 @@
 import API from "@/api/index.api";
 import Page from "@/components/Page";
 import formatPrice from "@/utils/formatPrice.util";
+import Image from "next/image";
 import ButtonWrapperInDealsDetail from "./_components/ButtonWrapperInDealsDetail";
 
 async function DealDetailPage(props: { params: { dealId: string } }) {
@@ -12,7 +13,15 @@ async function DealDetailPage(props: { params: { dealId: string } }) {
       <section className="max-w-lg mx-auto">
         <h2 className="a11y-hidden">판매글 상세 페이지</h2>
         <div className="flex flex-col items-center">
-          <div className="w-full h-72 bg-blue-300 rounded-xl"></div>
+          <div className="w-full h-72 bg-white rounded-xl flex justify-center">
+            <Image
+              src={`http://localhost:5050${deal.imgSrc}`}
+              width={300}
+              height={300}
+              alt={deal.title}
+              className="h-full rounded-xl"
+            />
+          </div>
         </div>
         <div className="flex py-5">
           <div className="bg-violet-300 rounded-full w-12 h-12"></div>
