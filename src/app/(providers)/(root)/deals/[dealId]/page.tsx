@@ -13,14 +13,20 @@ async function DealDetailPage(props: { params: { dealId: string } }) {
       <section className="max-w-lg mx-auto">
         <h2 className="a11y-hidden">판매글 상세 페이지</h2>
         <div className="flex flex-col items-center">
-          <div className="w-full h-72 bg-white rounded-xl flex justify-center">
-            <Image
-              src={`http://localhost:5050${deal.imgSrc}`}
-              width={300}
-              height={300}
-              alt={deal.title}
-              className="h-full rounded-xl"
-            />
+          <div
+            className={`w-full h-72 rounded-xl flex justify-center ${
+              deal.imgSrc ? "bg-white" : "bg-pink-400"
+            }`}
+          >
+            {deal.imgSrc && (
+              <Image
+                src={`http://localhost:5050${deal.imgSrc}`}
+                width={300}
+                height={300}
+                alt={deal.title}
+                className="h-full rounded-xl"
+              />
+            )}
           </div>
         </div>
         <div className="flex py-5">

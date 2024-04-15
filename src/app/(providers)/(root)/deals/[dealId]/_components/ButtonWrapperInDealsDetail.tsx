@@ -1,12 +1,13 @@
 "use client";
 
 import API from "@/api/index.api";
-import InterestHeart from "@/components/InterestHeart";
+import InterestHeartMemo from "@/components/InterestHeart/InterestHeart";
 import { useAuth } from "@/contexts/auth.context";
+import { useModal } from "@/contexts/modal.context";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import DeleteCheckModal from "./DeleteCheckModal";
 
 interface ButtonWrapperInDealsDetailProps {
   dealId: number;
@@ -17,8 +18,8 @@ function ButtonWrapperInDealsDetail({
   dealId,
   authorEmail,
 }: ButtonWrapperInDealsDetailProps) {
-  const router = useRouter();
   const { isLoggedIn } = useAuth();
+  const modal = useModal();
 
   //*1.로그인한 유저 이메일 정보 추출하여 => 해당 판매글의 authorEmail와 비교
   const { data: userData } = useQuery({
@@ -28,15 +29,9 @@ function ButtonWrapperInDealsDetail({
   });
   const email = userData?.email;
 
-  //*2.판매글 삭제
-  const { mutateAsync: deleteDeal } = useMutation({
-    mutationFn: API.deals.deleteDeal,
-    onSuccess: () => router.push("/my/deals"),
-  });
-  // 삭제 버튼 핸들러
-  const handleClickDeleteDeal = async () => {
-    await deleteDeal(dealId);
-    alert("판매글 삭제에 성공했습니다.");
+  // 2.삭제 버튼 핸들러
+  const handleClickDeleteDeal = () => {
+    modal.open(<DeleteCheckModal dealId={dealId} />);
   };
 
   //*3.페이지 마운트시 조회수 업데이트
@@ -68,7 +63,7 @@ function ButtonWrapperInDealsDetail({
           </button>
         </>
       ) : (
-        <InterestHeart dealId={dealId} />
+        <InterestHeartMemo dealId={dealId} />
       )}
     </div>
   );

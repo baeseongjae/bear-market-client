@@ -2,7 +2,7 @@ import { Deal } from "@/types/Deal.type";
 import formatPrice from "@/utils/formatPrice.util";
 import Image from "next/image";
 import Link from "next/link";
-import InterestHeart from "../InterestHeart/InterestHeart";
+import InterestHeartMemo from "../InterestHeart/InterestHeart";
 
 interface DealCardProps {
   deal: Deal;
@@ -30,7 +30,7 @@ function DealCard({ deal }: DealCardProps) {
           <span>관심 {deal.interest}</span>
           <span>∙</span>
           <span>조회 {deal.views}</span>
-          <InterestHeart dealId={deal.id} />
+          <InterestHeartMemo dealId={deal.id} />
         </div>
       </div>
     </Link>
