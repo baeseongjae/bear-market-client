@@ -9,7 +9,7 @@ function Button({
   className,
   ...props
 }: PropsWithChildren<ButtonProps>) {
-  const combinedClassName = `bg-pink-500 text-white font-semibold h-12 mt-10 transition rounded-lg ${className}`;
+  const combinedClassName = `bg-pink-500 text-white font-semibold focus:border-pink-500 focus:border-2 h-12 mt-10 transition rounded-lg ${className}`;
 
   return (
     <button className={combinedClassName} {...props}>

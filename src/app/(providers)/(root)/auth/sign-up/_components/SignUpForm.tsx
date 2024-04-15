@@ -1,7 +1,7 @@
 "use client";
 
 import API from "@/api/index.api";
-import Button from "@/components/Button";
+import { SubmitButton } from "@/components/Button";
 import Input from "@/components/Input";
 import { useAuth } from "@/contexts/auth.context";
 import { useMutation } from "@tanstack/react-query";
@@ -74,7 +74,7 @@ function SignUpForm() {
           />
         </li>
       </ul>
-      <Button onClick={handleClickSignUp}>회원가입하기</Button>
+      <SubmitButton onClick={handleClickSignUp}>회원가입하기</SubmitButton>
     </form>
   );
 }

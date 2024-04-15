@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { SubmitButton } from "../Button";
 import Input from "../Input";
 
 type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
@@ -120,12 +121,7 @@ function DealForm({
           </div> */}
         </li>
       </ul>
-      <button
-        type="submit"
-        className="bg-violet-400 text-white font-semibold h-12 mt-10 transition rounded-lg hover:-translate-y-1 active:translate-y-0"
-      >
-        {buttonLabel}
-      </button>
+      <SubmitButton type="submit">{buttonLabel}</SubmitButton>
     </form>
   );
 }

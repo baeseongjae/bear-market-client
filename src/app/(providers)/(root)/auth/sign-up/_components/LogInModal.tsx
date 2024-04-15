@@ -1,5 +1,5 @@
 import API from "@/api/index.api";
-import Button from "@/components/Button";
+import { SubmitButton } from "@/components/Button";
 import Heading from "@/components/Heading";
 import Input from "@/components/Input";
 import Modal from "@/components/Modal";
@@ -55,7 +55,7 @@ function LogInModal() {
           </li>
         </ul>
 
-        <Button onClick={handleClickLogIn}>로그인하기</Button>
+        <SubmitButton onClick={handleClickLogIn}>로그인하기</SubmitButton>
       </form>
     </Modal>
   );
