@@ -12,7 +12,7 @@ import {
   UpdateDealData,
   UpdateViewsData,
 } from "./deals.data";
-import { GetMyInterestedDealsDto, UpdateDealDto } from "./deals.dto";
+import { GetMyInterestedDealsDto } from "./deals.dto";
 
 class DealsAPI {
   private coreClient: AxiosInstance;
@@ -70,10 +70,10 @@ class DealsAPI {
     return deal;
   };
 
-  updateDeal = async (updateDealDto: UpdateDealDto, dealId: number) => {
+  updateDeal = async (formData: FormData, dealId: number) => {
     const response = await this.coreClient.patch<Response<UpdateDealData>>(
       `/deals/${dealId}/edit`,
-      updateDealDto
+      formData
     );
     const data = response.data;
     if (!data.success) throw new Error(data.error.message);

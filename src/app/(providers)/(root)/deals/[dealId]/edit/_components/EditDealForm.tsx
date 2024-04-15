@@ -1,9 +1,9 @@
 "use client";
 
-import { UpdateDealDto } from "@/api/deals/deals.dto";
 import API from "@/api/index.api";
 import DealForm from "@/components/DealForm";
 import { Deal } from "@/types/Deal.type";
+import { useFormData } from "@/utils/useFormData.util";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useEffect, useState } from "react";
@@ -23,15 +23,16 @@ function EditDealForm({ dealId }: { dealId: number }) {
   const { mutateAsync: updateDeal } = useMutation<
     Deal,
     Error,
-    { updateDealDto: UpdateDealDto; dealId: number }
+    { formData: FormData; dealId: number }
   >({
-    mutationFn: ({ updateDealDto, dealId }) =>
-      API.deals.updateDeal(updateDealDto, dealId),
+    mutationFn: ({ formData, dealId }) =>
+      API.deals.updateDeal(formData, dealId),
     onSuccess: () => {
       queryClient.invalidateQueries({
         exact: true,
         queryKey: ["deal", dealId],
       }); // 'deal' 쿼리 캐시 무효화
+      router.push("/my/deals");
     },
   });
 
@@ -41,7 +42,7 @@ function EditDealForm({ dealId }: { dealId: number }) {
   const [content, setContent] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [price, setPrice] = useState<string>("");
-  const [image, setImage] = useState<File>();
+  const [image, setImage] = useState<File | null>(null);
 
   const originalDeal = dealData;
 
@@ -61,11 +62,11 @@ function EditDealForm({ dealId }: { dealId: number }) {
     // 폼 제출
     event.preventDefault();
 
-    const updateDealDto = { title, content, location, price };
+    const updateDealFormData = { title, content, location, price, image };
     try {
-      await updateDeal({ updateDealDto, dealId });
+      const formData = useFormData(updateDealFormData);
+      await updateDeal({ formData, dealId });
       alert("판매글 수정에 성공했습니다.");
-      router.push("/");
     } catch (e) {
       alert("판매글 수정에 실패했습니다.");
     }
@@ -80,10 +81,12 @@ function EditDealForm({ dealId }: { dealId: number }) {
       content={content}
       location={location}
       price={price}
+      image={image}
       setTitle={setTitle}
       setContent={setContent}
       setLocation={setLocation}
       setPrice={setPrice}
+      setImage={setImage}
       onSubmit={handleSubmitUpdateDeal}
       buttonLabel="판매글 수정하기"
     />
