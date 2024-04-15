@@ -5,7 +5,7 @@ import LogInModal from "@/app/(providers)/(root)/auth/sign-up/_components/LogInM
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ComponentProps, useEffect, useState } from "react";
+import React, { ComponentProps, useEffect, useState } from "react";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 
 interface InterestHeartProps extends ComponentProps<"button"> {
@@ -66,4 +66,6 @@ function InterestHeart({ dealId, ...props }: InterestHeartProps) {
   );
 }
 
-export default InterestHeart;
+const InterestHeartMemo = React.memo(InterestHeart);
+
+export default InterestHeartMemo;
