@@ -1,5 +1,6 @@
 import { Deal } from "@/types/Deal.type";
 import formatPrice from "@/utils/formatPrice.util";
+import { useTimeDiff } from "@/utils/useTimeDiff";
 import Image from "next/image";
 import Link from "next/link";
 import InterestHeartMemo from "../InterestHeart/InterestHeart";
@@ -9,6 +10,7 @@ interface DealCardProps {
 }
 
 function DealCard({ deal }: DealCardProps) {
+  console.log(useTimeDiff(deal.createdAt));
   return (
     <Link href={`/deals/${deal.id}`}>
       <div className="w-72 h-72 bg-blue-200 rounded-3xl">
@@ -24,6 +26,9 @@ function DealCard({ deal }: DealCardProps) {
       </div>
       <div>
         <h6 className="pt-4 text-lg">{deal.title}</h6>
+        <p className="text-xs text-neutral-400">
+          {useTimeDiff(deal.createdAt)}
+        </p>
         <p className="text-xl font-bold pb-2">{formatPrice(deal.price)}</p>
         <p>{deal.location}</p>
         <div className="flex gap-x-1 items-center">
