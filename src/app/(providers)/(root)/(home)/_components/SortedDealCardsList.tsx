@@ -42,8 +42,8 @@ function SortedDealCardsList({ deals }: { deals: Deal[] }) {
           <li key={label}>
             <button
               onClick={handleClickSortButton}
-              className={`border border-neutral-600 text-neutral-600 rounded-3xl px-3 py-2 hover:border-pink-500 hover:text-pink-500 outline-pink-500 ${
-                orderBy === label ? "selected hover:text-white" : ""
+              className={`border shadow-md border-slate-300 text-neutral-400 rounded-3xl px-3 py-2 hover:ease-in duration-200 hover:border-primary-100 hover:text-primary-100 outline-primary-100 ${
+                orderBy === label ? "selected hover:selected" : ""
               }`}
             >
               {label}

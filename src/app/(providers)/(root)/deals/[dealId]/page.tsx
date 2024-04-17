@@ -1,6 +1,7 @@
 import API from "@/api/index.api";
 import Page from "@/components/Page";
 import formatPrice from "@/utils/formatPrice.util";
+import { useTimeDiff } from "@/utils/useTimeDiff";
 import Image from "next/image";
 import ButtonWrapperInDealsDetail from "./_components/ButtonWrapperInDealsDetail";
 
@@ -10,12 +11,12 @@ async function DealDetailPage(props: { params: { dealId: string } }) {
 
   return (
     <Page>
-      <section className="max-w-lg mx-auto">
+      <section className="max-w-lg mx-auto mb-10">
         <h2 className="a11y-hidden">판매글 상세 페이지</h2>
         <div className="flex flex-col items-center">
           <div
-            className={`w-full h-72 rounded-xl flex justify-center ${
-              deal.imgSrc ? "bg-white" : "bg-pink-400"
+            className={`w-full h-72 rounded-xl flex justify-center border border-neutral-300 shadow-xl ${
+              deal.imgSrc ? "bg-white" : "bg-primary-100"
             }`}
           >
             {deal.imgSrc && (
@@ -36,13 +37,25 @@ async function DealDetailPage(props: { params: { dealId: string } }) {
             <p>{deal.location}</p>
           </div>
         </div>
-        <h6 className="pt-4 text-2xl">{deal.title}</h6>
-        <p className="text-2xl font-bold pb-8">{formatPrice(deal.price)}</p>
-        <p>{deal.content}</p>
-        <ButtonWrapperInDealsDetail
-          dealId={dealId}
-          authorEmail={deal.authorEmail}
-        />
+        <div className="flex flex-col gap-y-1">
+          <h6 className="pt-4 text-2xl font-bold">{deal.title}</h6>
+          <p className="text-xs text-neutral-400">
+            {useTimeDiff(deal.createdAt)}
+          </p>
+          <p className="text-lg text-primary-100 font-bold pb-6">
+            {formatPrice(deal.price)}
+          </p>
+          <p>{deal.content}</p>
+        </div>
+        <div className="flex gap-x-1 text-xs md:text-sm items-center text-neutral-400 pb-10">
+          <span>관심 {deal.interest}</span>
+          <span>∙</span>
+          <span>조회 {deal.views}</span>
+          <ButtonWrapperInDealsDetail
+            dealId={dealId}
+            authorEmail={deal.authorEmail}
+          />
+        </div>
       </section>
     </Page>
   );

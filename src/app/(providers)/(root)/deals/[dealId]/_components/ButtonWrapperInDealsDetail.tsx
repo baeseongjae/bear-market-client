@@ -1,6 +1,7 @@
 "use client";
 
 import API from "@/api/index.api";
+import { ContainerButton } from "@/components/Button";
 import InterestHeartMemo from "@/components/InterestHeart/InterestHeart";
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
@@ -46,21 +47,21 @@ function ButtonWrapperInDealsDetail({
   console.log("조회수", updatedViews);
 
   return (
-    <div className="flex justify-end gap-x-8">
+    <div className="flex items-center text-[15px] gap-x-8 ml-auto">
       {email === authorEmail ? (
         <>
           <Link
             href={`./${dealId}/edit`}
-            className="bg-violet-500 text-white px-3 py-2 rounded-md hover:bg-violet-400 inline-block mt-4"
+            className="bg-primary-100 text-white font-semibold p-3 rounded-lg hover:bg-primary-100/70 inline-block"
           >
             글 수정하기
           </Link>
-          <button
+          <ContainerButton
             onClick={handleClickDeleteDeal}
-            className="bg-violet-500 text-white px-3 py-2 rounded-md hover:bg-violet-400 inline-block mt-4"
+            className="inline-block p-3"
           >
             글 삭제하기
-          </button>
+          </ContainerButton>
         </>
       ) : (
         <InterestHeartMemo dealId={dealId} />

@@ -16,6 +16,11 @@ const config: Config = {
       fontFamily: {
         pretendard: ["Pretendard", "sans-serif"],
       },
+      colors: {
+        primary: {
+          100: "#e65085",
+        },
+      },
     },
   },
   plugins: [],

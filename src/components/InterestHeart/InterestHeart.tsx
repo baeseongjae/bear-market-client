@@ -58,7 +58,9 @@ function InterestHeart({ dealId, ...props }: InterestHeartProps) {
   return (
     <button
       onClick={handleClickInterestButton}
-      className={`text-red-400 text-[24px] hover:text-red-600 ml-auto mr-2 p-2`}
+      className={`text-primary-100 text-[24px] ml-auto mr-2 p-2 ${
+        !isClickedInterest && "hover:text-primary-100/60"
+      }`}
       {...props}
     >
       {isClickedInterest ? <GoHeartFill /> : <GoHeart />}

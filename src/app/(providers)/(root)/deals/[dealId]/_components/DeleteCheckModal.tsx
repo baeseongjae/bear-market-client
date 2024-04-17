@@ -30,11 +30,17 @@ function DeleteCheckModal({ dealId }: { dealId: number }) {
     <Modal>
       <Heading className="text-xl text-center my-4 mb-8">판매글 삭제</Heading>
       <p>정말로 삭제하시겠습니까?</p>
-      <div className="flex items-center gap-x-2">
-        <GhostButton onClick={() => modal.close()} className="w-full">
+      <div className="flex items-center gap-x-2 mt-10">
+        <GhostButton
+          onClick={() => modal.close()}
+          className="w-full inline-block h-12"
+        >
           취소
         </GhostButton>
-        <ContainerButton onClick={handleClickDeleteButton} className="w-full">
+        <ContainerButton
+          onClick={handleClickDeleteButton}
+          className="w-full inline-block h-12"
+        >
           삭제
         </ContainerButton>
       </div>

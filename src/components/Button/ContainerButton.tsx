@@ -9,7 +9,7 @@ function ContainerButton({
   className,
   ...props
 }: PropsWithChildren<ButtonProps>) {
-  const combinedClassName = `bg-pink-600 text-white font-semibold h-12 mt-10 transition hover:bg-pink-400 rounded-lg ${className}`;
+  const combinedClassName = `bg-primary-100 text-white font-semibold transition hover:bg-primary-100/60 rounded-lg ${className}`;
 
   return (
     <button className={combinedClassName} {...props}>
