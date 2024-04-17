@@ -10,10 +10,10 @@ function HeaderMenu() {
   const { isLoggedIn } = useAuth();
   const { open } = useModal();
 
-  const handleClickServiceNeedLogIn = () => {
+  const handleClickServiceNeedLogIn = (path?: string) => {
     if (!isLoggedIn) {
       toast.info("로그인이 필요한 서비스입니다.");
-      open(<LogInModal />);
+      open(<LogInModal pathToGo={path} />);
     }
   };
 
@@ -26,7 +26,9 @@ function HeaderMenu() {
         <li>
           <Link
             href={isLoggedIn ? "/deals/create" : ""}
-            onClick={handleClickServiceNeedLogIn}
+            onClick={() => {
+              handleClickServiceNeedLogIn("/deals/create");
+            }}
           >
             판매하기
           </Link>
@@ -34,7 +36,7 @@ function HeaderMenu() {
         <li>
           <Link
             href={isLoggedIn ? "/my/deals" : ""}
-            onClick={handleClickServiceNeedLogIn}
+            onClick={() => handleClickServiceNeedLogIn("/my/deals")}
           >
             내 판매글
           </Link>
@@ -42,7 +44,7 @@ function HeaderMenu() {
         <li>
           <Link
             href={isLoggedIn ? "/my/interests" : ""}
-            onClick={handleClickServiceNeedLogIn}
+            onClick={() => handleClickServiceNeedLogIn("/my/interests")}
           >
             내 관심목록
           </Link>

@@ -6,25 +6,30 @@ import Modal from "@/components/Modal";
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function LogInModal() {
+function LogInModal({ pathToGo }: { pathToGo?: string }) {
   const auth = useAuth();
   const modal = useModal();
+  const router = useRouter();
   const { mutateAsync: logIn } = useMutation({ mutationFn: API.auth.logIn });
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleClickLogIn = async () => {
-    if (!email.trim()) return alert("이메일을 입력해 주세요");
-    if (!password.trim()) return alert("비밀번호를 입력해 주세요");
+    if (!email.trim()) return toast.error("이메일을 입력해 주세요");
+    if (!password.trim()) return toast.error("비밀번호를 입력해 주세요");
 
     try {
       await logIn({ email, password });
       auth.setIsLoggedIn(true);
       toast.success("로그인 성공!");
+      if (pathToGo) {
+        router.push(`${pathToGo}`);
+      }
       modal.close();
     } catch (e) {
       toast.error("로그인 실패!");
