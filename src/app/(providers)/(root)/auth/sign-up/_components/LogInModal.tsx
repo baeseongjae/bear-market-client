@@ -7,6 +7,8 @@ import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LogInModal() {
   const auth = useAuth();
@@ -22,10 +24,10 @@ function LogInModal() {
     try {
       await logIn({ email, password });
       auth.setIsLoggedIn(true);
-      alert("로그인 성공!");
+      toast.success("로그인 성공!");
       modal.close();
     } catch (e) {
-      alert("로그인 실패!");
+      toast.error("로그인 실패!");
     }
   };
 

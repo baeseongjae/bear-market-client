@@ -7,6 +7,7 @@ import { useModal } from "@/contexts/modal.context";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { ComponentProps, useEffect, useState } from "react";
 import { GoHeart, GoHeartFill } from "react-icons/go";
+import { toast } from "react-toastify";
 
 interface InterestHeartProps extends ComponentProps<"button"> {
   dealId: number;
@@ -50,7 +51,7 @@ function InterestHeart({ dealId, ...props }: InterestHeartProps) {
       toggleInterest(dealId);
       setIsClickedInterest(!isClickedInterest);
     } else {
-      alert("로그인이 필요한 서비스입니다.");
+      toast.info("로그인이 필요한 서비스 입니다.");
       modal.open(<LogInModal />);
     }
   };

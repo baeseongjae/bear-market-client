@@ -6,10 +6,13 @@ import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 function HeaderSignWrapper() {
   const auth = useAuth();
   const modal = useModal();
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const handleClickLogIn = () => {
@@ -20,8 +23,8 @@ function HeaderSignWrapper() {
     auth.setIsLoggedIn(false);
     API.auth.logOut();
     queryClient.invalidateQueries({ exact: true, queryKey: ["user"] });
-    alert("로그아웃 처리되었습니다.");
-    window.location.reload(); // todo: 해당 방법말고 다른방법 없을지
+    toast.success("로그아웃 처리되었습니다.");
+    router.push("/");
   };
 
   return (
