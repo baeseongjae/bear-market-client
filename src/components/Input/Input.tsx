@@ -2,11 +2,12 @@ import { ComponentProps, useId } from "react";
 
 interface InputProps extends ComponentProps<"input"> {
   label: string;
+  className?: string;
 }
 
-function Input({ label, ...props }: InputProps) {
+function Input({ label, className, ...props }: InputProps) {
   const id = useId();
-  const combinedClassName = `h-12 border border-slate-300 focus:border-pink-500 outline-none transition rounded-lg pl-4`;
+  const combinedClassName = `h-12 border border-slate-300 focus:border-pink-500 outline-none transition rounded-lg pl-4 ${className}`;
 
   return (
     <>

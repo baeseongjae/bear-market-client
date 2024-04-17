@@ -28,7 +28,7 @@ function HeaderSignWrapper() {
   };
 
   return (
-    <ul className="flex items-center ml-auto gap-x-4">
+    <ul className="flex items-center ml-10 gap-x-4">
       {auth.isLoggedIn ? (
         <li>
           <button onClick={handleClickLogOut}>로그아웃</button>
