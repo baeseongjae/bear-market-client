@@ -12,13 +12,13 @@ function HeaderSearchBar() {
       <Input
         label=""
         placeholder="물품이나 동네를 검색해보세요"
-        className="placeholder:text-sm"
+        className="placeholder:text-sm hidden md:inline-block h-10"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
       <button
         type="submit"
-        className="absolute right-2 top-[17px] text-slate-300 hover:text-primary-100"
+        className="inline-block md:absolute md:right-2 md:top-4 text-3xl md:text-xl text-slate-300 hover:text-primary-100"
       >
         <IoSearchSharp />
       </button>

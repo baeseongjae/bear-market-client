@@ -1,49 +1,66 @@
 "use client";
 
-import API from "@/api/index.api";
 import LogInModal from "@/app/(providers)/(root)/auth/sign-up/_components/LogInModal";
+import { ContainerButton, GhostButton } from "@/components/Button";
+import Icon from "@/components/Icon";
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
-import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import { useState } from "react";
+import HeaderDropdown from "./HeaderDropdown";
 
 function HeaderSignWrapper() {
   const auth = useAuth();
   const modal = useModal();
-  const router = useRouter();
-  const queryClient = useQueryClient();
+
+  const [isTimeToShowDropdown, setIsTimeToShowDropdown] =
+    useState<boolean>(false);
 
   const handleClickLogIn = () => {
     modal.open(<LogInModal />);
   };
 
-  const handleClickLogOut = () => {
-    auth.setIsLoggedIn(false);
-    API.auth.logOut();
-    queryClient.invalidateQueries({ exact: true, queryKey: ["user"] });
-    toast.success("로그아웃 처리되었습니다.");
-    router.push("/");
+  const handleClickProfileIcon = () => {
+    setIsTimeToShowDropdown(!isTimeToShowDropdown);
   };
 
   return (
-    <ul className="flex items-center ml-10 gap-x-4">
+    <>
       {auth.isLoggedIn ? (
-        <li>
-          <button onClick={handleClickLogOut}>로그아웃</button>
-        </li>
+        <div className="ml-4 lg:ml-10 relative">
+          <button onClick={handleClickProfileIcon}>
+            <Icon
+              src="/assets/header/profile.svg"
+              alt="프로필"
+              width={40}
+              height={40}
+            />
+          </button>
+          {isTimeToShowDropdown ? <HeaderDropdown /> : null}
+        </div>
       ) : (
         <>
-          <li>
-            <Link href="/auth/sign-up">회원가입</Link>
-          </li>
-          <li>
-            <button onClick={handleClickLogIn}>로그인</button>
-          </li>
+          <ul className="hidden lg:flex items-center ml-4 gap-x-4">
+            <li>
+              <Link href="/auth/sign-up">
+                <GhostButton className="px-3 py-2">회원가입</GhostButton>
+              </Link>
+            </li>
+            <li>
+              <ContainerButton onClick={handleClickLogIn} className="px-3 py-2">
+                로그인
+              </ContainerButton>
+            </li>
+          </ul>
+          <ContainerButton
+            onClick={handleClickLogIn}
+            className="lg:hidden px-3 py-2 ml-4"
+          >
+            함께하기
+          </ContainerButton>
         </>
       )}
-    </ul>
+    </>
   );
 }
 

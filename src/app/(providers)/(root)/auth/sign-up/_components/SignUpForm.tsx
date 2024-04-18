@@ -7,6 +7,7 @@ import { useAuth } from "@/contexts/auth.context";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 function SignUpForm() {
   const auth = useAuth();
@@ -28,9 +29,9 @@ function SignUpForm() {
     try {
       await signUp({ email, password });
       auth.setIsLoggedIn(true); // isLoggedIn 전역상태를 true로 변경
-      alert("회원가입에 성공하였습니다!");
+      toast.success("회원가입에 성공하였습니다!");
     } catch (e) {
-      alert("회원가입에 실패하였습니다."); // alert창 toastify로 바꿀예정
+      toast.error("회원가입에 실패하였습니다."); // alert창 toastify로 바꿀예정
     }
   };
 
