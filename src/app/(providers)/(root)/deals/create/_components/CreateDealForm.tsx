@@ -6,6 +6,7 @@ import { useFormData } from "@/utils/useFormData.util";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useState } from "react";
+import { toast } from "react-toastify";
 
 function CreateDealForm() {
   const { mutateAsync: createDeal } = useMutation({
@@ -31,9 +32,9 @@ function CreateDealForm() {
     try {
       const formData = useFormData(dealFormData);
       await createDeal(formData);
-      alert("판매글 생성에 성공했습니다.");
+      toast.success("판매글 생성에 성공했습니다.");
     } catch (e) {
-      alert("판매글 생성에 실패했습니다.");
+      toast.error("판매글 생성에 실패했습니다.");
     }
   };
 
