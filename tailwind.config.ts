@@ -21,6 +21,14 @@ const config: Config = {
           100: "#e65085",
         },
       },
+      screens: {
+        // min-width 기준
+        xxs: "375px", // small-mobile
+        xs: "576px", // large-mobile
+        // sm: "640px", // xLarge-mobile
+        // md: "768px", // tablet
+        // lg: "1024px", // laptop
+      },
     },
   },
   plugins: [],
