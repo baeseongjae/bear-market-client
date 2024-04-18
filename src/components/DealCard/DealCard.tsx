@@ -3,7 +3,7 @@ import formatPrice from "@/utils/formatPrice.util";
 import { useTimeDiff } from "@/utils/useTimeDiff";
 import Image from "next/image";
 import Link from "next/link";
-import InterestHeartMemo from "../InterestHeart/InterestHeart";
+import ButtonWrapperByUser from "./ButtonWrapperByUser/ButtonWrapperByUser";
 
 interface DealCardProps {
   deal: Deal;
@@ -33,7 +33,10 @@ function DealCard({ deal }: DealCardProps) {
           <span>관심 {deal.interest}</span>
           <span>∙</span>
           <span>조회 {deal.views}</span>
-          <InterestHeartMemo dealId={deal.id} />
+          <ButtonWrapperByUser
+            dealId={deal.id}
+            authorEmail={deal.authorEmail}
+          />
         </div>
       </div>
     </Link>
