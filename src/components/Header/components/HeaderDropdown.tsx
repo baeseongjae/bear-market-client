@@ -2,6 +2,7 @@
 
 import API from "@/api/index.api";
 import { useAuth } from "@/contexts/auth.context";
+import { useUser } from "@/contexts/user.context";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,12 +13,13 @@ import { HiAnnotation, HiCollection } from "react-icons/hi";
 import { toast } from "react-toastify";
 
 function HeaderDropdown() {
-  const auth = useAuth();
+  const { setIsLoggedIn } = useAuth();
+  const { email } = useUser();
   const queryClient = useQueryClient();
   const router = useRouter();
 
   const handleClickLogOut = () => {
-    auth.setIsLoggedIn(false);
+    setIsLoggedIn(false);
     API.auth.logOut();
     queryClient.invalidateQueries({ exact: true, queryKey: ["user"] });
     toast.success("로그아웃 처리되었습니다.");
@@ -25,9 +27,9 @@ function HeaderDropdown() {
   };
 
   return (
-    <nav className="absolute w-40 top-10 right-0 py-2">
+    <nav className="absolute top-10 right-0 py-4">
       <ul className="bg-white rounded-2xl border border-slate-300 shadow-xl">
-        <li className="px-3 py-2">이메일</li>
+        <li className="px-3 py-2 text-sm">{email}</li>
 
         <hr className="block xs:hidden" />
         <li className="block xs:hidden">
