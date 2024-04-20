@@ -35,7 +35,9 @@ function HeaderSignWrapper() {
               height={40}
             />
           </button>
-          {isTimeToShowDropdown ? <HeaderDropdown /> : null}
+          {isTimeToShowDropdown ? (
+            <HeaderDropdown setIsTimeToShowDropdown={setIsTimeToShowDropdown} />
+          ) : null}
         </div>
       ) : (
         <>

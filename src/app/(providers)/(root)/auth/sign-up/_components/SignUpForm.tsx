@@ -3,7 +3,7 @@
 import API from "@/api/index.api";
 import { SubmitButton, VisibleToggleButton } from "@/components/Button";
 import AuthInput from "@/components/Input/AuthInput";
-import { useAuth } from "@/contexts";
+import { useAuth, useUser } from "@/contexts";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 
 function SignUpForm() {
   const auth = useAuth();
+  const user = useUser();
   const router = useRouter();
   const { mutateAsync: signUp } = useMutation({
     mutationFn: API.auth.signUp,
@@ -31,6 +32,7 @@ function SignUpForm() {
 
     try {
       await signUp({ email, password });
+      user.setEmail(email);
       auth.setIsLoggedIn(true); // isLoggedIn 전역상태를 true로 변경
       toast.success("회원가입에 성공하였습니다!");
     } catch (e) {
