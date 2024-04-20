@@ -5,7 +5,6 @@ import { useAuth } from "@/contexts/auth.context";
 import { useUser } from "@/contexts/user.context";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { CgProfile } from "react-icons/cg";
 import { FiCornerUpRight, FiLogOut } from "react-icons/fi";
 import { GoHeartFill } from "react-icons/go";
@@ -16,14 +15,13 @@ function HeaderDropdown() {
   const { setIsLoggedIn } = useAuth();
   const { email } = useUser();
   const queryClient = useQueryClient();
-  const router = useRouter();
 
   const handleClickLogOut = () => {
     setIsLoggedIn(false);
     API.auth.logOut();
     queryClient.invalidateQueries({ exact: true, queryKey: ["user"] });
     toast.success("로그아웃 처리되었습니다.");
-    router.push("/");
+    window.location.reload();
   };
 
   return (

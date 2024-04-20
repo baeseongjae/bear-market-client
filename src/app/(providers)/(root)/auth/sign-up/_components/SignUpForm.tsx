@@ -2,7 +2,7 @@
 
 import API from "@/api/index.api";
 import { SubmitButton } from "@/components/Button";
-import Input from "@/components/Input";
+import AuthInput from "@/components/Input/AuthInput";
 import { useAuth } from "@/contexts/auth.context";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -47,35 +47,37 @@ function SignUpForm() {
       className="flex flex-col gap-y-4"
     >
       <ul className="flex flex-col gap-y-4">
-        <li className="flex flex-col">
-          <Input
+        <li className="flex flex-col relative">
+          <AuthInput
             label="이메일"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="market@gmail.com"
           />
         </li>
-        <li className="flex flex-col">
-          <Input
+        <li className="flex flex-col relative">
+          <AuthInput
             label="비밀번호"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="market123!@"
           />
         </li>
-        <li className="flex flex-col">
-          <Input
+        <li className="flex flex-col relative">
+          <AuthInput
             label="비밀번호 확인"
             type="password"
             value={passwordCheck}
             onChange={(e) => setPasswordCheck(e.target.value)}
-            placeholder="market123!@"
           />
         </li>
       </ul>
-      <SubmitButton onClick={handleClickSignUp}>회원가입하기</SubmitButton>
+      <SubmitButton
+        onClick={handleClickSignUp}
+        className="text-sm md:text-[15px] mt-5"
+      >
+        가입하기
+      </SubmitButton>
     </form>
   );
 }

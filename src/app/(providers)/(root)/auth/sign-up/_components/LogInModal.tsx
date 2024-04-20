@@ -7,6 +7,7 @@ import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import { useUser } from "@/contexts/user.context";
 import { useMutation } from "@tanstack/react-query";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -21,6 +22,7 @@ function LogInModal({ pathToGo }: { pathToGo?: string }) {
   const { mutateAsync: logIn } = useMutation({ mutationFn: API.auth.logIn });
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
   const handleClickLogIn = async () => {
     if (!email.trim()) return toast.error("이메일을 입력해 주세요");
@@ -42,7 +44,9 @@ function LogInModal({ pathToGo }: { pathToGo?: string }) {
 
   return (
     <Modal className="px-5 py-[27px] lg:px-5 lg:max-w-[390px] text-neutral-90">
-      <Heading className="text-center my-4 mb-8 md:text-2xl">로그인</Heading>
+      <Heading className="text-center my-4 mb-8 text-xl xs:text-xl md:text-[22px] lg:text-2xl">
+        로그인
+      </Heading>
       <form
         className="flex flex-col gap-y-4 rounded-lg"
         onSubmit={(e) => e.preventDefault()}
@@ -59,21 +63,48 @@ function LogInModal({ pathToGo }: { pathToGo?: string }) {
           <li className="flex flex-col gap-y-1 relative">
             <AuthInput
               label="비밀번호"
-              type="password"
+              type={isPasswordVisible ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <button
+              type="button"
+              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+            >
+              {isPasswordVisible ? (
+                <Image
+                  src="/assets/sign_up_page/password_hide.svg"
+                  alt="비밀번호 가리기"
+                  width={17}
+                  height={17}
+                  className="absolute right-[14px] top-1/2 -translate-y-1/2"
+                />
+              ) : (
+                <Image
+                  src="/assets/sign_up_page/password_view.svg"
+                  alt="비밀번호 보이기"
+                  width={17}
+                  height={17}
+                  className="absolute right-[14px] top-1/2 -translate-y-1/2"
+                />
+              )}
+            </button>
           </li>
         </ul>
 
-        <SubmitButton onClick={handleClickLogIn}>로그인하기</SubmitButton>
+        <SubmitButton
+          onClick={handleClickLogIn}
+          className="text-sm md:text-[15px] mt-5"
+        >
+          로그인하기
+        </SubmitButton>
         <Link
           href="/auth/sign-up"
           onClick={() => modal.close()}
-          className="text-primary-100 text-[11px] text-center"
+          className="text-primary-100 text-[11px] md:text-[13px] text-center"
         >
-          아직 회원이 아니신가요?{" "}
-          <span className="underline font-bold hover:text-primary-100/50">
+          아직 회원이 아니신가요?
+          <span className="ml-1 md:ml-2 underline font-bold hover:text-primary-100/50">
             가입하기
           </span>
         </Link>

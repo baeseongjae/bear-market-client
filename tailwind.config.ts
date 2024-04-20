@@ -18,7 +18,10 @@ const config: Config = {
       },
       colors: {
         primary: {
-          100: "#e65085",
+          100: "#f43f5ee6",
+        },
+        snow: {
+          100: "#eeeeee",
         },
       },
       screens: {

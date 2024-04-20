@@ -6,7 +6,9 @@ interface HeadingProps {
 
 function Heading({ children, className }: PropsWithChildren<HeadingProps>) {
   return (
-    <h2 className={`text-xl md:text-3xl font-bold my-12 ${className}`}>
+    <h2
+      className={`text-xl xs:text-2xl md:text-3xl font-bold my-12 ${className}`}
+    >
       {children}
     </h2>
   );

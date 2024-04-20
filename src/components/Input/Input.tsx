@@ -7,7 +7,7 @@ interface InputProps extends ComponentProps<"input"> {
 
 function Input({ label, className, ...props }: InputProps) {
   const id = useId();
-  const combinedClassName = `h-12 border border-slate-300 focus:border-pink-500 outline-none transition rounded-lg pl-4 ${className}`;
+  const combinedClassName = `h-12 border border-slate-300 focus:border-primary-100 outline-none transition rounded-lg pl-4 ${className}`;
 
   return (
     <>

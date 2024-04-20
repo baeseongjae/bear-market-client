@@ -9,7 +9,7 @@ function GhostButton({
   className,
   ...props
 }: PropsWithChildren<ButtonProps>) {
-  const combinedClassName = `border border-pink-600 text-pink-600 font-semibold transition hover:border-pink-400 hover:text-pink-400 rounded-lg ${className}`;
+  const combinedClassName = `border border-primary-100 text-pink-600 font-semibold transition hover:border-primary-100 hover:text-pink-400 rounded-lg ${className}`;
 
   return (
     <button className={combinedClassName} {...props}>

@@ -23,7 +23,7 @@ function HeaderMenu() {
         <li>
           <Link
             href="/"
-            className="hover:bg-pink-600 hover:text-white px-3 py-2 rounded-lg"
+            className="hover:bg-primary-100 hover:text-white px-3 py-2 rounded-lg"
           >
             둘러보기
           </Link>
@@ -34,7 +34,7 @@ function HeaderMenu() {
             onClick={() => {
               handleClickServiceNeedLogIn("/deals/create");
             }}
-            className="hover:bg-pink-600 hover:text-white px-3 py-2 rounded-lg"
+            className="hover:bg-primary-100 hover:text-white px-3 py-2 rounded-lg"
           >
             판매하기
           </Link>
@@ -42,7 +42,7 @@ function HeaderMenu() {
         <li>
           <Link
             href={"#"}
-            className="hover:bg-pink-600 hover:text-white px-3 py-2 rounded-lg"
+            className="hover:bg-primary-100 hover:text-white px-3 py-2 rounded-lg"
           >
             채팅하기
           </Link>
