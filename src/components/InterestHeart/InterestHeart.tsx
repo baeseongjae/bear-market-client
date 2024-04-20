@@ -2,8 +2,7 @@
 
 import API from "@/api/index.api";
 import LogInModal from "@/app/(providers)/(root)/auth/_components/LogInModal";
-import { useAuth } from "@/contexts/auth.context";
-import { useModal } from "@/contexts/modal.context";
+import { useAuth, useModal } from "@/contexts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { ComponentProps, useEffect, useState } from "react";
 import { GoHeart, GoHeartFill } from "react-icons/go";

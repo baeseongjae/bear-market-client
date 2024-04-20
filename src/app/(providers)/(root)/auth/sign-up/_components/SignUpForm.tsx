@@ -3,7 +3,7 @@
 import API from "@/api/index.api";
 import { SubmitButton, VisibleToggleButton } from "@/components/Button";
 import AuthInput from "@/components/Input/AuthInput";
-import { useAuth } from "@/contexts/auth.context";
+import { useAuth } from "@/contexts";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

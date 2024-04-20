@@ -1,7 +1,7 @@
 "use client";
 
 import Input from "@/components/Input";
-import { useSearch } from "@/contexts/search.context";
+import { useSearch } from "@/contexts";
 import { IoSearchSharp } from "react-icons/io5";
 
 function HeaderSearchBar() {

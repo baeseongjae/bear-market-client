@@ -3,7 +3,7 @@
 import { ContainerButton, GhostButton } from "@/components/Button";
 import Heading from "@/components/Heading";
 import Modal from "@/components/Modal";
-import { useModal } from "@/contexts/modal.context";
+import { useModal } from "@/contexts";
 import { useRouter } from "next/navigation";
 
 function EditModal({ dealId }: { dealId: number }) {

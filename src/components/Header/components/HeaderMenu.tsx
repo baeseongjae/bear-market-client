@@ -1,8 +1,7 @@
 "use client";
 
 import LogInModal from "@/app/(providers)/(root)/auth/_components/LogInModal";
-import { useAuth } from "@/contexts/auth.context";
-import { useModal } from "@/contexts/modal.context";
+import { useAuth, useModal } from "@/contexts";
 import Link from "next/link";
 import { toast } from "react-toastify";
 

@@ -4,7 +4,7 @@ import API from "@/api/index.api";
 import DealCardsList from "@/components/DealCardsList";
 import Heading from "@/components/Heading";
 import Page from "@/components/Page";
-import { useAuth } from "@/contexts/auth.context";
+import { useAuth } from "@/contexts";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useMemo } from "react";
 

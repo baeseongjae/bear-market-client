@@ -1,4 +1,4 @@
-import { useModal } from "@/contexts/modal.context";
+import { useModal } from "@/contexts";
 import { PropsWithChildren } from "react";
 
 interface ModalProps {

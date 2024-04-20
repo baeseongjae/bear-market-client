@@ -1,7 +1,7 @@
 "use client";
 
 import DealCardsList from "@/components/DealCardsList";
-import { useSearch } from "@/contexts/search.context";
+import { useSearch } from "@/contexts";
 import { Deal } from "@/types/Deal.type";
 import { useEffect, useState } from "react";
 

@@ -80,7 +80,7 @@ function LogInModal({ pathToGo }: { pathToGo?: string }) {
         <Link
           href="/auth/sign-up"
           onClick={() => modal.close()}
-          className="text-primary-100 text-[11px] md:text-[13px] text-center"
+          className="text-primary-100 text-[11px] md:text-[13px] text-center outline-none rounded-md focus:border focus:border-primary-100"
         >
           아직 회원이 아니신가요?
           <span className="ml-1 md:ml-2 underline font-bold hover:text-primary-100/50">

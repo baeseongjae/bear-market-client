@@ -4,7 +4,7 @@ import API from "@/api/index.api";
 import { ContainerButton, GhostButton } from "@/components/Button";
 import Heading from "@/components/Heading";
 import Modal from "@/components/Modal";
-import { useModal } from "@/contexts/modal.context";
+import { useModal } from "@/contexts";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 

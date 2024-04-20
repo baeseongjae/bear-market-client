@@ -1,8 +1,7 @@
 "use client";
 
 import API from "@/api/index.api";
-import { useAuth } from "@/contexts/auth.context";
-import { useUser } from "@/contexts/user.context";
+import { useAuth, useUser } from "@/contexts";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { CgProfile } from "react-icons/cg";
