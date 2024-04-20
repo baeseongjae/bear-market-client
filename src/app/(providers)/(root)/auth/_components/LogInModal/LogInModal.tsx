@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import HrTag from "./_components/HrTag";
+import SocialLogInSection from "./_components/SocialLogInSection";
 
 function LogInModal({ pathToGo }: { pathToGo?: string }) {
   const auth = useAuth();
@@ -88,6 +90,8 @@ function LogInModal({ pathToGo }: { pathToGo?: string }) {
           </span>
         </Link>
       </form>
+      <HrTag />
+      <SocialLogInSection />
     </Modal>
   );
 }

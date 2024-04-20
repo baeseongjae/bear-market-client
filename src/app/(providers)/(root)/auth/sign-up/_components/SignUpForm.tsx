@@ -49,7 +49,7 @@ function SignUpForm() {
       onSubmit={(e) => e.preventDefault()}
       className="flex flex-col gap-y-4"
     >
-      <ul className="flex flex-col gap-y-4">
+      <ul className="flex flex-col gap-y-5">
         <li className="flex flex-col relative">
           <AuthInput
             label="이메일"
