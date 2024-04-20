@@ -1,7 +1,9 @@
-import { AuthProvider } from "@/contexts/auth.context";
-import { ModalProvider } from "@/contexts/modal.context";
-import { SearchProvider } from "@/contexts/search.context";
-import { UserProvider } from "@/contexts/user.context";
+import {
+  AuthProvider,
+  ModalProvider,
+  SearchProvider,
+  UserProvider,
+} from "@/contexts";
 import ReactQueryProvider from "@/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 

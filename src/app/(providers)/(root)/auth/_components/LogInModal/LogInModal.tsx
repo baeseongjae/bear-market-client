@@ -1,13 +1,10 @@
 import API from "@/api/index.api";
-import { SubmitButton } from "@/components/Button";
+import { SubmitButton, VisibleToggleButton } from "@/components/Button";
 import Heading from "@/components/Heading";
 import AuthInput from "@/components/Input/AuthInput";
 import Modal from "@/components/Modal";
-import { useAuth } from "@/contexts/auth.context";
-import { useModal } from "@/contexts/modal.context";
-import { useUser } from "@/contexts/user.context";
+import { useAuth, useModal, useUser } from "@/contexts";
 import { useMutation } from "@tanstack/react-query";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -67,28 +64,10 @@ function LogInModal({ pathToGo }: { pathToGo?: string }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button
-              type="button"
-              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-            >
-              {isPasswordVisible ? (
-                <Image
-                  src="/assets/sign_up_page/password_hide.svg"
-                  alt="비밀번호 가리기"
-                  width={17}
-                  height={17}
-                  className="absolute right-[14px] top-1/2 -translate-y-1/2"
-                />
-              ) : (
-                <Image
-                  src="/assets/sign_up_page/password_view.svg"
-                  alt="비밀번호 보이기"
-                  width={17}
-                  height={17}
-                  className="absolute right-[14px] top-1/2 -translate-y-1/2"
-                />
-              )}
-            </button>
+            <VisibleToggleButton
+              isPasswordVisible={isPasswordVisible}
+              setIsPasswordVisible={setIsPasswordVisible}
+            />
           </li>
         </ul>
 

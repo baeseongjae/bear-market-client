@@ -1,7 +1,7 @@
 "use client";
 
 import API from "@/api/index.api";
-import { SubmitButton } from "@/components/Button";
+import { SubmitButton, VisibleToggleButton } from "@/components/Button";
 import AuthInput from "@/components/Input/AuthInput";
 import { useAuth } from "@/contexts/auth.context";
 import { useMutation } from "@tanstack/react-query";
@@ -18,6 +18,9 @@ function SignUpForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordCheck, setPasswordCheck] = useState<string>("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isPasswordCheckVisible, setIsPasswordCheckVisible] =
+    useState<boolean>(false);
 
   const handleClickSignUp = async () => {
     if (!email.trim()) return alert("이메일을 입력해 주세요.");
@@ -58,17 +61,25 @@ function SignUpForm() {
         <li className="flex flex-col relative">
           <AuthInput
             label="비밀번호"
-            type="password"
+            type={`${isPasswordVisible ? "text" : "password"}`}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <VisibleToggleButton
+            isPasswordVisible={isPasswordVisible}
+            setIsPasswordVisible={setIsPasswordVisible}
           />
         </li>
         <li className="flex flex-col relative">
           <AuthInput
             label="비밀번호 확인"
-            type="password"
+            type={`${isPasswordCheckVisible ? "text" : "password"}`}
             value={passwordCheck}
             onChange={(e) => setPasswordCheck(e.target.value)}
+          />
+          <VisibleToggleButton
+            isPasswordVisible={isPasswordCheckVisible}
+            setIsPasswordVisible={setIsPasswordCheckVisible}
           />
         </li>
       </ul>

@@ -1,6 +1,6 @@
 "use client";
 
-import LogInModal from "@/app/(providers)/(root)/auth/sign-up/_components/LogInModal";
+import LogInModal from "@/app/(providers)/(root)/auth/_components/LogInModal";
 import { ContainerButton, GhostButton } from "@/components/Button";
 import Icon from "@/components/Icon";
 import { useAuth } from "@/contexts/auth.context";

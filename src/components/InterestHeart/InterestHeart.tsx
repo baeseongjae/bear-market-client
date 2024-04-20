@@ -1,7 +1,7 @@
 "use client";
 
 import API from "@/api/index.api";
-import LogInModal from "@/app/(providers)/(root)/auth/sign-up/_components/LogInModal";
+import LogInModal from "@/app/(providers)/(root)/auth/_components/LogInModal";
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";

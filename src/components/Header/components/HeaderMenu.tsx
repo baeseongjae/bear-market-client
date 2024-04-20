@@ -1,6 +1,6 @@
 "use client";
 
-import LogInModal from "@/app/(providers)/(root)/auth/sign-up/_components/LogInModal";
+import LogInModal from "@/app/(providers)/(root)/auth/_components/LogInModal";
 import { useAuth } from "@/contexts/auth.context";
 import { useModal } from "@/contexts/modal.context";
 import Link from "next/link";
