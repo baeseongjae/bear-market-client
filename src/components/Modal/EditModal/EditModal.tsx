@@ -16,8 +16,10 @@ function EditModal({ dealId }: { dealId: number }) {
   };
 
   return (
-    <Modal>
-      <Heading className="text-xl text-center my-4 mb-8">판매글 수정</Heading>
+    <Modal className="md:max-w-[390px] xs:w-[350px] w-[330px]">
+      <Heading className="text-xl text-center my-4 mb-8 xs:text-xl md:text-[22px] lg:text-2xl">
+        판매글 수정
+      </Heading>
       <p>수정 페이지로 이동할까요?</p>
       <div className="flex items-center gap-x-2 mt-10">
         <GhostButton
