@@ -2,7 +2,7 @@
 
 import API from "@/api/index.api";
 import DealForm from "@/components/DealForm";
-import { useFormData } from "@/utils/useFormData.util";
+import { createFormData } from "@/utils/createFormData.util";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useState } from "react";
@@ -30,7 +30,7 @@ function CreateDealForm() {
     const dealFormData = { title, content, location, price, image };
 
     try {
-      const formData = useFormData(dealFormData);
+      const formData = createFormData(dealFormData);
       await createDeal(formData);
       toast.success("판매글 생성에 성공했습니다.");
     } catch (e) {

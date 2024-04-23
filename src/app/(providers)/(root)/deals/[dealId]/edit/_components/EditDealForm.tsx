@@ -3,7 +3,7 @@
 import API from "@/api/index.api";
 import DealForm from "@/components/DealForm";
 import { Deal } from "@/types/Deal.type";
-import { useFormData } from "@/utils/useFormData.util";
+import { createFormData } from "@/utils/createFormData.util";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useEffect, useState } from "react";
@@ -64,7 +64,7 @@ function EditDealForm({ dealId }: { dealId: number }) {
 
     const updateDealFormData = { title, content, location, price, image };
     try {
-      const formData = useFormData(updateDealFormData);
+      const formData = createFormData(updateDealFormData);
       await updateDeal({ formData, dealId });
       alert("판매글 수정에 성공했습니다.");
     } catch (e) {
