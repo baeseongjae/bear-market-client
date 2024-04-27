@@ -22,9 +22,7 @@ function AuthInput({ label, className, ...props }: AuthInputProps) {
         htmlFor={id}
         className={`bg-white dark:bg-black px-[6px] absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400 transition-all duration-500
         peer-focus:text-primary-100 ${
-          value !== ""
-            ? "text-xs absolute left-5 -top-[1px]"
-            : "text-xs xs:text-[13px] md:text-sm lg:text-sm peer-focus:text-xs peer-focus:left-5 peer-focus:-top-[1px]"
+          value !== "" ? "label-default" : "label-moved"
         } 
         overflow-hidden z-5 `}
       >

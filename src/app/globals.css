@@ -11,6 +11,14 @@
   .selected {
     @apply text-white bg-primary-100 border-[#E6E6E6] drop-shadow-[0px_0px_2px_#db0d97] border-[0.7px] font-bold;
   }
+
+  .label-moved {
+    @apply text-xs xs:text-[13px] md:text-sm lg:text-sm peer-focus:text-xs peer-focus:left-5 peer-focus:-top-[1px];
+  }
+
+  .label-default {
+    @apply text-xs absolute left-5 -top-[1px];
+  }
 }
 
 html,
