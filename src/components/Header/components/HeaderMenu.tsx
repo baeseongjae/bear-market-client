@@ -17,7 +17,7 @@ function HeaderMenu() {
   };
 
   return (
-    <nav className="xs:ml-12 ml-5 hidden xs:block ">
+    <nav className="xs:ml-12 ml-5 hidden md:block ">
       <ul className="flex items-center">
         <li>
           <Link

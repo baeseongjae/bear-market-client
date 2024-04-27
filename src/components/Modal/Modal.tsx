@@ -16,7 +16,7 @@ function Modal({ children, className }: PropsWithChildren<ModalProps>) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-white rounded-2xl min-w-80 md:w-full max-w-[370px] px-5 py-8 ${className}`}
+        className={`bg-white dark:bg-black/80 rounded-2xl min-w-80 md:w-full max-w-[370px] px-5 py-8 ${className}`}
       >
         {children}
       </div>

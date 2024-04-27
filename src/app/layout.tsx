@@ -1,3 +1,4 @@
+import ThemeProviders from "@/themes";
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
@@ -26,7 +27,9 @@ export default function HTMLLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
         />
       </head>
-      <body className={notoSansKr.className}>{children}</body>
+      <body className={notoSansKr.className}>
+        <ThemeProviders>{children}</ThemeProviders>
+      </body>
     </html>
   );
 }
