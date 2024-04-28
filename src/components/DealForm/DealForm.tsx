@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
+import { FaFileImage } from "react-icons/fa";
 import { SubmitButton } from "../Button";
 import Input from "../Input";
+import ImagePreview from "./ImagePreview/ImagePreview";
 
 type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -33,7 +35,7 @@ function DealForm({
   onSubmit,
   buttonLabel,
 }: DealFormProps) {
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const [imageUrl, setImageUrl] = useState<string>(""); // 이미지 프리뷰
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleClickCameraIcon = () => {
     fileInputRef.current?.click();
@@ -46,79 +48,87 @@ function DealForm({
       setImageUrl(URL.createObjectURL(file));
     }
   };
+
+  const handleClickRemoveImage = () => {
+    URL.revokeObjectURL(imageUrl);
+    setImage(null);
+    setImageUrl("");
+  };
+
   return (
     <form onSubmit={onSubmit} className="flex flex-col pb-12">
       <ul className="flex flex-col gap-y-4">
-        <li className="flex flex-col">
+        <li className="flex flex-col gap-y-2">
+          <label htmlFor="image">이미지 업로드</label>
+          <input
+            ref={fileInputRef}
+            type="file"
+            id="image"
+            multiple
+            accept="image/*" // 이미지 파일만 허용하도록 설정
+            onChange={handleSelectImage}
+            className="hidden"
+          />
+          <div className="relative">
+            <div className={`flex items-center h-28 border-2 p-2 rounded-xl`}>
+              <button
+                type="button"
+                onClick={handleClickCameraIcon}
+                className="p-2 h-full w-1/5 text-4xl flex items-center justify-center border border-dashed border-slate-300 rounded-xl mr-2"
+              >
+                <FaFileImage />
+              </button>
+              {imageUrl ? (
+                // 이미지 미리보기
+                <ImagePreview
+                  imageUrl={imageUrl}
+                  handleClickRemoveImage={handleClickRemoveImage}
+                  fileName={image?.name}
+                />
+              ) : (
+                <p className="ml-10">이미지를 업로드해주세요.</p>
+              )}
+            </div>
+          </div>
+        </li>
+        <li className="flex flex-col gay-y-2">
           <Input
             label="글 제목"
             type="text"
             value={title}
+            placeholder="제목을 입력해주세요. (최소 3글자 이상)"
             onChange={(e) => setTitle(e.target.value)}
           />
         </li>
-        <li className="flex flex-col">
+        <li className="flex flex-col gay-y-2">
           <label htmlFor="">글 내용</label>
           <textarea
             name="content"
             cols={30}
             rows={10}
             value={content}
+            placeholder="내용을 입력해주세요..."
             onChange={(e) => setContent(e.target.value)}
-            className="border border-slate-300 focus:border-violet-500 outline-none transition rounded-lg pl-4 py-3"
+            className="border border-slate-300 focus:border-primary-100 outline-none transition rounded-lg pl-4 py-3"
           />
         </li>
-        <li className="flex flex-col">
+        <li className="flex flex-col gay-y-2">
           <Input
             label="직거래 위치"
             type="text"
             value={location}
+            placeholder="시/구/동 순서로 입력해주세요.  예) 서울시 강남구 신사동"
             onChange={(e) => setLocation(e.target.value)}
           />
         </li>
-        <li className="flex flex-col">
+        <li className="flex flex-col gay-y-2">
           <Input
             label="판매 가격"
             type="text"
             value={price}
+            placeholder="가격을 입력해주세요.  예) 5000"
             onChange={(e) => setPrice(e.target.value)}
           />
-        </li>
-        <li className="flex flex-col">
-          <label htmlFor="image">이미지</label>
-          <input
-            type="file"
-            id="image"
-            onChange={(e) => setImage(e.target.files?.[0] || null)}
-            className="h-12 border border-slate-300 focus:border-black outline-none transition rounded-md pl-4"
-          />
-          {/* <div className="w-32 h-32 mx-auto relative">
-            <div className="w-full h-full rounded-full bg-neutral-30 mx-auto flex relative overflow-hidden">
-              {imageUrl && (
-                <Image
-                  src={imageUrl}
-                  alt="이미지"
-                  layout="fill"
-                  objectFit="cover"
-                />
-              )}
-            </div>
-            <button type="button" onClick={handleClickCameraIcon}>
-              <Image
-                src="/assets/create_deal_page/camera.svg"
-                alt="카메라"
-                width={36}
-                height={36}
-                className="absolute bottom-0 right-2"
-              />
-              <input
-                ref={fileInputRef}
-                type="file"
-                onChange={handleSelectImage}
-                className="a11y-hidden"
-              />
-            </button>
-          </div> */}
         </li>
       </ul>
       <SubmitButton type="submit">{buttonLabel}</SubmitButton>

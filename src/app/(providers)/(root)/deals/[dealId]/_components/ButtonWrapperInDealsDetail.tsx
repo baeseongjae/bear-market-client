@@ -3,8 +3,7 @@
 import API from "@/api/index.api";
 import { ContainerButton } from "@/components/Button";
 import InterestHeartMemo from "@/components/InterestHeart/InterestHeart";
-import { useAuth } from "@/contexts/auth.context";
-import { useModal } from "@/contexts/modal.context";
+import { useAuth, useModal } from "@/contexts";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useEffect } from "react";
