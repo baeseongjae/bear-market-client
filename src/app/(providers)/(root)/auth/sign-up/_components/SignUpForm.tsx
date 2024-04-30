@@ -1,10 +1,9 @@
 "use client";
 
-import API from "@/api/index.api";
 import { SubmitButton, VisibleToggleButton } from "@/components/Button";
 import AuthInput from "@/components/Input/AuthInput";
 import { useAuth, useUser } from "@/contexts";
-import { useMutation } from "@tanstack/react-query";
+import useMutationSignUp from "@/react-query/auth/useMutationSignUp";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -13,9 +12,7 @@ function SignUpForm() {
   const auth = useAuth();
   const user = useUser();
   const router = useRouter();
-  const { mutateAsync: signUp } = useMutation({
-    mutationFn: API.auth.signUp,
-  });
+  const { mutateAsync: signUp, isPending } = useMutationSignUp();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordCheck, setPasswordCheck] = useState<string>("");
@@ -89,6 +86,7 @@ function SignUpForm() {
       <SubmitButton
         onClick={handleClickSignUp}
         className="text-sm md:text-[15px] mt-5"
+        disabled={isPending}
       >
         가입하기
       </SubmitButton>

@@ -85,7 +85,7 @@ function DealForm({
               <button
                 type="button"
                 onClick={handleClickCameraIcon}
-                className="p-2 h-full w-1/5 text-4xl flex items-center justify-center border border-dashed border-slate-300 rounded-xl mr-2"
+                className="p-2 h-full w-24 text-4xl flex items-center justify-center border border-dashed border-slate-300 rounded-xl mr-2"
               >
                 <FaFileImage />
               </button>
@@ -97,7 +97,9 @@ function DealForm({
                   fileName={image?.name}
                 />
               ) : (
-                <p className="ml-10">이미지를 업로드해주세요.</p>
+                <p className="ml-5 md:ml-10 text-xs md:text-base">
+                  이미지를 업로드해주세요.
+                </p>
               )}
             </div>
           </div>

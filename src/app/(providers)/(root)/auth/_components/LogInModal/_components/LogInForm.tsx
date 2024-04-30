@@ -1,8 +1,7 @@
-import API from "@/api/index.api";
 import { SubmitButton, VisibleToggleButton } from "@/components/Button";
 import AuthInput from "@/components/Input/AuthInput";
 import { useAuth, useModal, useUser } from "@/contexts";
-import { useMutation } from "@tanstack/react-query";
+import useMutationLogIn from "@/react-query/auth/useMutationLogIn";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -13,7 +12,7 @@ function LogInForm({ pathToGo }: { pathToGo?: string }) {
   const user = useUser();
   const modal = useModal();
   const router = useRouter();
-  const { mutateAsync: logIn } = useMutation({ mutationFn: API.auth.logIn });
+  const { mutateAsync: logIn, isPending } = useMutationLogIn();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -67,6 +66,7 @@ function LogInForm({ pathToGo }: { pathToGo?: string }) {
       <SubmitButton
         onClick={handleClickLogIn}
         className="text-sm md:text-[15px] mt-5"
+        disabled={isPending}
       >
         로그인하기
       </SubmitButton>
