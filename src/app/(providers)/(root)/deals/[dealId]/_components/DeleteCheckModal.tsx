@@ -1,24 +1,16 @@
 "use client";
 
-import API from "@/api/index.api";
 import { ContainerButton, GhostButton } from "@/components/Button";
 import Heading from "@/components/Heading";
 import Modal from "@/components/Modal";
 import { useModal } from "@/contexts";
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import useMutationDeleteDeal from "@/react-query/deal/useMutationDeleteDeal";
 
 function DeleteCheckModal({ dealId }: { dealId: number }) {
   const modal = useModal();
-  const router = useRouter();
 
   //*2.판매글 삭제
-  const { mutate: deleteDeal } = useMutation({
-    mutationFn: API.deals.deleteDeal,
-    onSuccess: () => {
-      router.push("/my/deals");
-    },
-  });
+  const { mutate: deleteDeal } = useMutationDeleteDeal();
 
   const handleClickDeleteButton = () => {
     deleteDeal(dealId);

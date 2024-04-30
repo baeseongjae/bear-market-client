@@ -1,43 +1,15 @@
 "use client";
 
-import API from "@/api/index.api";
 import DealForm from "@/components/DealForm";
-import { Deal } from "@/types/Deal.type";
+import useMutationUpdateDeal from "@/react-query/deal/useMutationUpdateDeal";
+import useQueryDeal from "@/react-query/deal/useQueryDeal";
 import { createFormData } from "@/utils/createFormData.util";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { FormEventHandler, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 function EditDealForm({ dealId }: { dealId: number }) {
-  const queryClient = useQueryClient();
-
-  const {
-    data: dealData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["deal", dealId],
-    queryFn: () => API.deals.getDeal(dealId),
-  });
-
-  const { mutateAsync: updateDeal } = useMutation<
-    Deal,
-    Error,
-    { formData: FormData; dealId: number }
-  >({
-    mutationFn: ({ formData, dealId }) =>
-      API.deals.updateDeal(formData, dealId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        exact: true,
-        queryKey: ["deal", dealId],
-      }); // 'deal' 쿼리 캐시 무효화
-      router.push("/my/deals");
-    },
-  });
-
-  const router = useRouter();
+  const { data: dealData, isLoading, isError } = useQueryDeal({ dealId });
+  const { mutateAsync: updateDeal } = useMutationUpdateDeal({ dealId });
 
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");

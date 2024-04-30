@@ -12,7 +12,7 @@ interface DealFormProps {
   location: string;
   price: string;
   image: File | null;
-  prevImageUrl: string | null;
+  prevImageUrl?: string | null;
   setTitle: SetState<string>;
   setContent: SetState<string>;
   setLocation: SetState<string>;

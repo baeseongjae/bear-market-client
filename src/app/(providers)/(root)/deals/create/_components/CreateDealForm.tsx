@@ -1,21 +1,13 @@
 "use client";
 
-import API from "@/api/index.api";
 import DealForm from "@/components/DealForm";
+import useMutationCreateDeal from "@/react-query/deal/useMutationCreateDeal";
 import { createFormData } from "@/utils/createFormData.util";
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { FormEventHandler, useState } from "react";
 import { toast } from "react-toastify";
 
 function CreateDealForm() {
-  const { mutateAsync: createDeal } = useMutation({
-    mutationFn: API.deals.createDeal,
-    onSuccess: () => {
-      router.push("/my/deals");
-    },
-  });
-  const router = useRouter();
+  const { mutateAsync: createDeal } = useMutationCreateDeal();
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [location, setLocation] = useState<string>("");
