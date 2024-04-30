@@ -1,11 +1,10 @@
 "use client";
 
-import API from "@/api/index.api";
 import DeleteCheckModal from "@/app/(providers)/(root)/deals/[dealId]/_components/DeleteCheckModal";
 import InterestHeartMemo from "@/components/InterestHeart/InterestHeart";
 import EditModal from "@/components/Modal/EditModal";
-import { useAuth, useModal } from "@/contexts";
-import { useQuery } from "@tanstack/react-query";
+import { useModal } from "@/contexts";
+import useQueryUserData from "@/react-query/user/useQueryUserData";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
@@ -15,15 +14,10 @@ interface ButtonWrapperByUser {
 }
 
 function ButtonWrapperByUser({ dealId, authorEmail }: ButtonWrapperByUser) {
-  const { isLoggedIn } = useAuth();
   const modal = useModal();
 
   //*1.로그인한 유저 이메일 정보 추출하여 => 해당 판매글의 authorEmail와 비교
-  const { data: userData } = useQuery({
-    queryKey: ["user"],
-    queryFn: API.auth.getUserEmail,
-    enabled: isLoggedIn,
-  });
+  const { data: userData } = useQueryUserData();
   const email = userData?.email;
 
   // 2.삭제 버튼 핸들러

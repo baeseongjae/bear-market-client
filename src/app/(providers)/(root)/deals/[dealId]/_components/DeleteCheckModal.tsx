@@ -5,16 +5,15 @@ import Heading from "@/components/Heading";
 import Modal from "@/components/Modal";
 import { useModal } from "@/contexts";
 import useMutationDeleteDeal from "@/react-query/deal/useMutationDeleteDeal";
+import { toast } from "react-toastify";
 
 function DeleteCheckModal({ dealId }: { dealId: number }) {
-  const modal = useModal();
-
-  //*2.판매글 삭제
   const { mutate: deleteDeal } = useMutationDeleteDeal();
+  const modal = useModal();
 
   const handleClickDeleteButton = () => {
     deleteDeal(dealId);
-    alert("판매글 삭제에 성공했습니다.");
+    toast.success("판매글 삭제에 성공했습니다.");
     modal.close();
   };
 

@@ -1,16 +1,12 @@
 "use client";
 
-import API from "@/api/index.api";
 import DealCardsList from "@/components/DealCardsList";
 import Heading from "@/components/Heading";
 import Page from "@/components/Page";
-import { useQuery } from "@tanstack/react-query";
+import useQueryMyDeals from "@/react-query/my/useQueryMyDeals";
 
 function MyDealsPage() {
-  const { data: data, isLoading } = useQuery({
-    queryKey: ["myDeals"],
-    queryFn: API.deals.getMyDeals,
-  });
+  const { data: data, isLoading } = useQueryMyDeals();
   const myDeals = data;
 
   return (

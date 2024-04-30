@@ -8,7 +8,6 @@ interface AuthInputProps extends ComponentProps<"input"> {
 function AuthInput({ label, className, ...props }: AuthInputProps) {
   const id = useId();
   const { value } = props;
-  console.log(value);
 
   return (
     <>

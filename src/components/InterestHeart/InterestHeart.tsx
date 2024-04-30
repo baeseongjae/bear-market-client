@@ -1,9 +1,9 @@
 "use client";
 
-import API from "@/api/index.api";
 import LogInModal from "@/app/(providers)/(root)/auth/_components/LogInModal";
 import { useAuth, useModal } from "@/contexts";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import useMutationInterest from "@/react-query/interest/useMutationInterest";
+import useQueryMyInterests from "@/react-query/my/useQueryMyInterests";
 import React, { ComponentProps, useEffect, useState } from "react";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { toast } from "react-toastify";
@@ -13,23 +13,10 @@ interface InterestHeartProps extends ComponentProps<"button"> {
 }
 
 function InterestHeart({ dealId, ...props }: InterestHeartProps) {
-  const queryClient = useQueryClient();
   const { isLoggedIn } = useAuth();
   const modal = useModal();
-  const { mutate: toggleInterest } = useMutation({
-    mutationFn: API.deals.toggleInterest,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        exact: true,
-        queryKey: ["myInterests"],
-      });
-    },
-  });
-  const { data: myInterests, isLoading } = useQuery({
-    queryKey: ["myInterests"],
-    queryFn: API.deals.getMyInterests,
-    enabled: isLoggedIn,
-  });
+  const { mutate: toggleInterest } = useMutationInterest();
+  const { data: myInterests, isLoading } = useQueryMyInterests();
   const [isClickedInterest, setIsClickedInterest] = useState<boolean>(false);
 
   // 처음 마운트시 해당유저의 관심버튼토글 서버상태 동기화.
@@ -42,6 +29,7 @@ function InterestHeart({ dealId, ...props }: InterestHeartProps) {
     }
   });
 
+  // 로그인 상태에 따른 관심버튼클릭 조건부 처리.
   const handleClickInterestButton = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {

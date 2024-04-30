@@ -1,32 +1,20 @@
 "use client";
 
-import API from "@/api/index.api";
 import DealCardsList from "@/components/DealCardsList";
 import Heading from "@/components/Heading";
 import Page from "@/components/Page";
-import { useAuth } from "@/contexts";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import useMutationMyInterestedDeals from "@/react-query/my/useMutationMyInterestedDeals";
+import useQueryMyInterests from "@/react-query/my/useQueryMyInterests";
 import { useEffect, useMemo } from "react";
 import PopularDeals from "./_components/PopularDeals";
 
 function MyInterestsPage() {
-  const queryClient = useQueryClient();
-  const { isLoggedIn } = useAuth();
-
-  const { data: myInterests, isLoading } = useQuery({
-    queryKey: ["myInterests"],
-    queryFn: API.deals.getMyInterests,
-    enabled: isLoggedIn,
-  });
+  const { data: myInterests, isLoading } = useQueryMyInterests();
   const {
     mutate: getMyInterestedDeals,
     data: myInterestedDeals,
     isPending,
-  } = useMutation({
-    mutationFn: API.deals.getMyInterestedDeals,
-    onSuccess: () =>
-      queryClient.invalidateQueries({ exact: true, queryKey: ["myInterests"] }),
-  });
+  } = useMutationMyInterestedDeals();
 
   const dealIds = useMemo(() => {
     return myInterests?.map((interest) => interest.dealId);
