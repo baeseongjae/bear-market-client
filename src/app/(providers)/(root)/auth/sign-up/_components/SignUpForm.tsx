@@ -24,11 +24,12 @@ function SignUpForm() {
     useState<boolean>(false);
 
   const handleClickSignUp = async () => {
-    if (!email.trim()) return alert("이메일을 입력해 주세요.");
-    if (!password.trim()) return alert("비밀번호를 입력해 주세요");
-    if (!passwordCheck.trim()) return alert("비밀번호 확인을 입력해 주세요");
+    if (!password.trim()) return toast.info("비밀번호를 입력해 주세요");
+    if (!email.trim()) return toast.info("이메일을 입력해 주세요.");
+    if (!passwordCheck.trim())
+      return toast.info("비밀번호 확인을 입력해 주세요");
     if (password.trim() !== passwordCheck.trim())
-      return alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+      return toast.info("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
 
     try {
       await signUp({ email, password });

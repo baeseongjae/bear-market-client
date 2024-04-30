@@ -7,6 +7,7 @@ import { createFormData } from "@/utils/createFormData.util";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 function EditDealForm({ dealId }: { dealId: number }) {
   const queryClient = useQueryClient();
@@ -43,6 +44,7 @@ function EditDealForm({ dealId }: { dealId: number }) {
   const [location, setLocation] = useState<string>("");
   const [price, setPrice] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>("");
 
   const originalDeal = dealData;
 
@@ -53,6 +55,9 @@ function EditDealForm({ dealId }: { dealId: number }) {
       setContent(originalDeal.content);
       setLocation(originalDeal.location);
       setPrice(originalDeal.price);
+      if (originalDeal.imgSrc) {
+        setImageUrl(originalDeal.imgSrc);
+      }
     }
   }, [originalDeal]);
 
@@ -66,9 +71,9 @@ function EditDealForm({ dealId }: { dealId: number }) {
     try {
       const formData = createFormData(updateDealFormData);
       await updateDeal({ formData, dealId });
-      alert("판매글 수정에 성공했습니다.");
+      toast.success("판매글 수정에 성공했습니다.");
     } catch (e) {
-      alert("판매글 수정에 실패했습니다.");
+      toast.error("판매글 수정에 실패했습니다.");
     }
   };
 
@@ -82,6 +87,7 @@ function EditDealForm({ dealId }: { dealId: number }) {
       location={location}
       price={price}
       image={image}
+      prevImageUrl={imageUrl}
       setTitle={setTitle}
       setContent={setContent}
       setLocation={setLocation}

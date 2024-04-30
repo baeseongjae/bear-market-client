@@ -11,7 +11,7 @@ function EditModal({ dealId }: { dealId: number }) {
   const router = useRouter();
 
   const handleClickMove = () => {
-    router.push(`./deals/${dealId}/edit`);
+    router.push(`/deals/${dealId}/edit`);
     modal.close();
   };
 

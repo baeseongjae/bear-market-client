@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaFileImage } from "react-icons/fa";
 import { SubmitButton } from "../Button";
 import Input from "../Input";
@@ -12,6 +12,7 @@ interface DealFormProps {
   location: string;
   price: string;
   image: File | null;
+  prevImageUrl: string | null;
   setTitle: SetState<string>;
   setContent: SetState<string>;
   setLocation: SetState<string>;
@@ -27,6 +28,7 @@ function DealForm({
   location,
   price,
   image,
+  prevImageUrl,
   setTitle,
   setContent,
   setLocation,
@@ -37,6 +39,15 @@ function DealForm({
 }: DealFormProps) {
   const [imageUrl, setImageUrl] = useState<string>(""); // 이미지 프리뷰
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const nextServerUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+
+  // 기존 판매글에 저장된 이미지 세팅
+  useEffect(() => {
+    if (prevImageUrl) {
+      setImageUrl(`${nextServerUrl}${prevImageUrl}`);
+    }
+  }, [prevImageUrl]);
+
   const handleClickCameraIcon = () => {
     fileInputRef.current?.click();
   };
@@ -50,7 +61,7 @@ function DealForm({
   };
 
   const handleClickRemoveImage = () => {
-    URL.revokeObjectURL(imageUrl);
+    URL.revokeObjectURL(imageUrl as string); //메모리 누수 방지를 위해 생성된 url 해제
     setImage(null);
     setImageUrl("");
   };
@@ -91,7 +102,7 @@ function DealForm({
             </div>
           </div>
         </li>
-        <li className="flex flex-col gay-y-2">
+        <li className="flex flex-col gap-y-2">
           <Input
             label="글 제목"
             type="text"
@@ -100,7 +111,7 @@ function DealForm({
             onChange={(e) => setTitle(e.target.value)}
           />
         </li>
-        <li className="flex flex-col gay-y-2">
+        <li className="flex flex-col gap-y-2">
           <label htmlFor="">글 내용</label>
           <textarea
             name="content"
@@ -112,7 +123,7 @@ function DealForm({
             className="border border-slate-300 focus:border-primary-100 outline-none transition rounded-lg pl-4 py-3"
           />
         </li>
-        <li className="flex flex-col gay-y-2">
+        <li className="flex flex-col gap-y-2">
           <Input
             label="직거래 위치"
             type="text"
@@ -121,7 +132,7 @@ function DealForm({
             onChange={(e) => setLocation(e.target.value)}
           />
         </li>
-        <li className="flex flex-col gay-y-2">
+        <li className="flex flex-col gap-y-2">
           <Input
             label="판매 가격"
             type="text"
