@@ -20,7 +20,11 @@ function MyDealsPage() {
       ) : (
         <section>
           <Heading>내가 쓴 판매글</Heading>
-          <DealCardsList deals={myDeals || []} />
+          {myDeals?.length ? (
+            <DealCardsList deals={myDeals || []} />
+          ) : (
+            <p className="flex flex-col ">게시중인 판매글이 없습니다.</p>
+          )}
         </section>
       )}
     </Page>
