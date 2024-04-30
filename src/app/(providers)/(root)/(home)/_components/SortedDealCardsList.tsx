@@ -11,8 +11,6 @@ function SortedDealCardsList({ deals }: { deals: Deal[] }) {
   const [dealData, setDealData] = useState<Deal[]>([]);
   const { search } = useSearch();
 
-  console.log(search);
-
   useEffect(() => {
     // *0. props데이터 복사본 생성
     let sortedDealData = [...deals];
