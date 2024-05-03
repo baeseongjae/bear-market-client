@@ -3,8 +3,14 @@ import AuthAPI from "./auth/auth.api";
 import DealsAPI from "./deals/deals.api";
 import HealthAPI from "./health/health.api";
 
+// const accessToken =
+//   typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+
 const coreClient = axios.create({
   baseURL: "http://localhost:5050",
+  // headers: {
+  //   Authorization: accessToken ? `Bearer ${accessToken}` : undefined,
+  // },
 });
 
 class API {

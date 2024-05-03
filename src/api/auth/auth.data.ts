@@ -4,6 +4,10 @@ export type SignUpData = {
 
 export type LogInData = SignUpData;
 
+export type RefreshedTokenData = {
+  refreshedAccessToken: string;
+};
+
 export type GetUserData = {
   userByEmail: {
     id: string;

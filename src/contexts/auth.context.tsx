@@ -7,6 +7,7 @@ import {
   useContext,
   useState,
 } from "react";
+import { useUser } from "./user.context";
 
 type AuthContextValue = {
   isLoggedIn: boolean;
@@ -32,6 +33,7 @@ export const useAuth = () => useContext(AuthContext);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAuthInitialized, setIsAuthInitialized] = useState(false);
+  const { setEmail } = useUser();
 
   const value = {
     isLoggedIn,
@@ -39,6 +41,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isAuthInitialized,
     setIsAuthInitialized,
   };
+
+  // useEffect(() => {
+  //   const isAccessTokenStored = !!(typeof window !== "undefined"
+  //     ? localStorage.getItem("accessToken")
+  //     : null);
+  //   setIsLoggedIn(isAccessTokenStored);
+  //   setIsAuthInitialized(true);
+  //   const email = localStorage.getItem("userEmail");
+  //   console.log("이메일은", email);
+  //   email ? setEmail(email) : null;
+  // }, [setEmail]);
+
+  // // * 4분30초마다 리프레시 토큰 갱신
+  // useEffect(() => {
+  //   let timerId: number | undefined;
+  //   if (isLoggedIn) {
+  //     timerId = window.setInterval(async () => {
+  //       await API.auth.refreshToken();
+  //     }, 1000 * 60 * 4.5);
+  //     return () => {
+  //       window.clearInterval(timerId);
+  //     };
+  //   } else {
+  //     if (!timerId) return;
+
+  //     window.clearInterval(timerId);
+  //   }
+  // }, [isLoggedIn]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

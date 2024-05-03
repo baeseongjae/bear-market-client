@@ -18,6 +18,7 @@ function ButtonWrapperByUser({ dealId, authorEmail }: ButtonWrapperByUser) {
 
   //*1.로그인한 유저 이메일 정보 추출하여 => 해당 판매글의 authorEmail와 비교
   const { data: userData } = useQueryUserData();
+  console.log(userData);
   const email = userData?.email;
 
   // 2.삭제 버튼 핸들러

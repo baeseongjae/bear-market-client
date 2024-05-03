@@ -1,38 +1,24 @@
 import { SubmitButton, VisibleToggleButton } from "@/components/Button";
 import AuthInput from "@/components/Input/AuthInput";
-import { useAuth, useModal, useUser } from "@/contexts";
+import { useModal } from "@/contexts";
 import useMutationLogIn from "@/react-query/auth/useMutationLogIn";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 function LogInForm({ pathToGo }: { pathToGo?: string }) {
-  const auth = useAuth();
-  const user = useUser();
   const modal = useModal();
-  const router = useRouter();
-  const { mutateAsync: logIn, isPending } = useMutationLogIn();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const { mutate: logIn, isPending } = useMutationLogIn(email, pathToGo);
 
-  const handleClickLogIn = async () => {
+  const handleClickLogIn = () => {
     if (!email.trim()) return toast.error("이메일을 입력해 주세요");
     if (!password.trim()) return toast.error("비밀번호를 입력해 주세요");
 
-    try {
-      await logIn({ email, password });
-      auth.setIsLoggedIn(true);
-      user.setEmail(email);
-      toast.success("로그인 성공!");
-      if (pathToGo) {
-        router.push(`${pathToGo}`);
-      }
-      modal.close();
-    } catch (e) {
-      toast.error("로그인 실패!");
-    }
+    // useMutationLogIn에서 로그인 관련 사이드 이펙트 일괄 관리
+    logIn({ email, password });
   };
 
   return (

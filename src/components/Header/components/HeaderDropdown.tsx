@@ -33,9 +33,11 @@ function HeaderDropdown({ setIsTimeToShowDropdown }: HeaderDropdownProps) {
   };
 
   return (
-    <nav className="absolute top-10 right-0 py-4">
+    <nav className="absolute top-10 right-0 py-4 min-w-[130px]">
       <ul className="bg-white dark:bg-black/80 rounded-2xl border border-slate-300 shadow-xl">
-        <li className="px-3 py-2 text-sm">{email}</li>
+        <li className="px-3 py-2 text-sm text-center">
+          {email ? email : `이메일`}
+        </li>
 
         <hr className="block md:hidden" />
         <li className="block md:hidden">
