@@ -7,7 +7,7 @@ import HealthAPI from "./health/health.api";
 //   typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
 
 const coreClient = axios.create({
-  baseURL: "http://localhost:5050",
+  baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
   // headers: {
   //   Authorization: accessToken ? `Bearer ${accessToken}` : undefined,
   // },
