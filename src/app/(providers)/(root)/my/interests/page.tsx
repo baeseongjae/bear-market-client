@@ -3,32 +3,22 @@
 import DealCardsList from "@/components/DealCardsList";
 import Heading from "@/components/Heading";
 import Page from "@/components/Page";
-import useMutationMyInterestedDeals from "@/react-query/my/useMutationMyInterestedDeals";
+import useQueryMyInterestedDeals from "@/react-query/my/useQueryMyInterestedDeals";
 import useQueryMyInterests from "@/react-query/my/useQueryMyInterests";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import PopularDeals from "./_components/PopularDeals";
 
 function MyInterestsPage() {
-  const { data: myInterests, isLoading } = useQueryMyInterests();
-  const {
-    mutate: getMyInterestedDeals,
-    data: myInterestedDeals,
-    isPending,
-  } = useMutationMyInterestedDeals();
-
+  const { data: myInterests, isLoading } = useQueryMyInterests(); // 내 관심 판매글 데이터 불러오기.
   const dealIds = useMemo(() => {
-    return myInterests?.map((interest) => interest.dealId);
+    return myInterests?.map((interest) => interest.dealId) || [];
   }, [myInterests]);
-
-  useEffect(() => {
-    if (dealIds) {
-      getMyInterestedDeals({ dealIds });
-    }
-  }, [dealIds]);
+  const { data: myInterestedDeals, isLoading: isDealsLoading } =
+    useQueryMyInterestedDeals(dealIds);
 
   return (
     <Page>
-      {isPending ? (
+      {isDealsLoading ? (
         <p>로딩중...</p>
       ) : (
         <>
