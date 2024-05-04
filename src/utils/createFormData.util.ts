@@ -1,4 +1,4 @@
-import { DealForm } from "../types/DealForm.type";
+import { DealForm } from "@/types/DealForm.type";
 
 export function createFormData(dealFormData: DealForm) {
   const { image, ...dealFormDataNotImage } = dealFormData;
