@@ -5,7 +5,6 @@ import {
   UserProvider,
 } from "@/contexts";
 import ReactQueryProvider from "@/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -17,7 +16,7 @@ function Providers({ children }: { children: React.ReactNode }) {
           </ModalProvider>
         </UserProvider>
       </AuthProvider>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
     </ReactQueryProvider>
   );
 }

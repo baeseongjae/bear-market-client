@@ -2,7 +2,13 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["localhost"],
+    remotePatterns: [
+      { hostname: "localhost" },
+      {
+        hostname:
+          "port-0-time-attack-fullstack-server-refactor-dc9c2nltdolfnd.sel5.cloudtype.app",
+      },
+    ],
   },
 };
 
