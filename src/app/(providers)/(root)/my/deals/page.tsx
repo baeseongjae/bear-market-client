@@ -3,25 +3,13 @@
 import DealCardsList from "@/components/DealCardsList";
 import Heading from "@/components/Heading";
 import Page from "@/components/Page";
-import { useAuth } from "@/contexts";
+import { useRequireLogIn } from "@/hooks/useRequireLogIn";
 import useQueryMyDeals from "@/react-query/my/useQueryMyDeals";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
 
 function MyDealsPage() {
   const { data: data, isLoading } = useQueryMyDeals();
-  const { isLoggedIn } = useAuth();
-  const router = useRouter();
-
   const myDeals = data;
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      toast.info("로그인이 필요한 페이지입니다.");
-      router.push("/");
-    }
-  }, [isLoggedIn]);
+  useRequireLogIn();
 
   return (
     <Page>

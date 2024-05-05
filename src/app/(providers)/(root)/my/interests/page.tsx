@@ -3,6 +3,7 @@
 import DealCardsList from "@/components/DealCardsList";
 import Heading from "@/components/Heading";
 import Page from "@/components/Page";
+import { useRequireLogIn } from "@/hooks/useRequireLogIn";
 import useQueryMyInterestedDeals from "@/react-query/my/useQueryMyInterestedDeals";
 import useQueryMyInterests from "@/react-query/my/useQueryMyInterests";
 import { useMemo } from "react";
@@ -15,6 +16,8 @@ function MyInterestsPage() {
   }, [myInterests]);
   const { data: myInterestedDeals, isLoading: isDealsLoading } =
     useQueryMyInterestedDeals(dealIds);
+
+  useRequireLogIn();
 
   return (
     <Page>
