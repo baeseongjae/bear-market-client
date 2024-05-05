@@ -27,7 +27,11 @@ function InterestHeart({ dealId, ...props }: InterestHeartProps) {
       );
       setIsClickedInterest(isInterested);
     }
-  }, []);
+    // 로그아웃시 관심버튼 초기화
+    if (!isLoggedIn) {
+      setIsClickedInterest(false);
+    }
+  }, [isLoading, isLoggedIn]);
 
   // 로그인 상태에 따른 관심버튼클릭 조건부 렌더링.
   const handleClickInterestButton = (
@@ -58,4 +62,4 @@ function InterestHeart({ dealId, ...props }: InterestHeartProps) {
 
 const InterestHeartMemo = React.memo(InterestHeart);
 
-export default InterestHeartMemo;
+export default InterestHeart;

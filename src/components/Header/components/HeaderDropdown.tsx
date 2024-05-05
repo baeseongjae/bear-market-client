@@ -29,7 +29,6 @@ function HeaderDropdown({ setIsTimeToShowDropdown }: HeaderDropdownProps) {
     queryClient.invalidateQueries({ exact: true, queryKey: ["user"] });
     toast.success("로그아웃 처리되었습니다.");
     router.push("/");
-    window.location.reload();
   };
 
   return (
