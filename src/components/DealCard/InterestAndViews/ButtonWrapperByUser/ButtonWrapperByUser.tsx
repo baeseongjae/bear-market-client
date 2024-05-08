@@ -1,7 +1,7 @@
 "use client";
 
 import DeleteCheckModal from "@/app/(providers)/(root)/deals/[dealId]/_components/DeleteCheckModal";
-import InterestHeartMemo from "@/components/InterestHeart/InterestHeart";
+import InterestHeart from "@/components/InterestHeart/InterestHeart";
 import EditModal from "@/components/Modal/EditModal";
 import { useModal } from "@/contexts";
 import useQueryUserData from "@/react-query/user/useQueryUserData";
@@ -18,7 +18,6 @@ function ButtonWrapperByUser({ dealId, authorEmail }: ButtonWrapperByUser) {
 
   //*1.로그인한 유저 이메일 정보 추출하여 => 해당 판매글의 authorEmail와 비교
   const { data: userData } = useQueryUserData();
-  console.log(userData);
   const email = userData?.email;
 
   // 2.삭제 버튼 핸들러
@@ -52,7 +51,7 @@ function ButtonWrapperByUser({ dealId, authorEmail }: ButtonWrapperByUser) {
           </button>
         </>
       ) : (
-        <InterestHeartMemo dealId={dealId} />
+        <InterestHeart dealId={dealId} />
       )}
     </div>
   );

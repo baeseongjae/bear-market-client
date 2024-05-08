@@ -1,8 +1,8 @@
 import API from "@/api/index.api";
-import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export default function useMutationInterest() {
-  const queryClient = new QueryClient();
+export default function useMutationInterest(dealId: number) {
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: API.deals.toggleInterest,
@@ -10,6 +10,10 @@ export default function useMutationInterest() {
       queryClient.invalidateQueries({
         exact: true,
         queryKey: ["myInterests"],
+      });
+      queryClient.invalidateQueries({
+        exact: true,
+        queryKey: ["deal", dealId],
       });
     },
   });

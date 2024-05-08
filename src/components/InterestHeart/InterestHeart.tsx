@@ -15,7 +15,7 @@ interface InterestHeartProps extends ComponentProps<"button"> {
 function InterestHeart({ dealId, ...props }: InterestHeartProps) {
   const modal = useModal();
   const { isLoggedIn } = useAuth();
-  const { mutate: toggleInterest } = useMutationInterest();
+  const { mutate: toggleInterest } = useMutationInterest(dealId);
   const { data: myInterests, isLoading } = useQueryMyInterests();
   const [isClickedInterest, setIsClickedInterest] = useState<boolean>(false);
 
@@ -31,7 +31,7 @@ function InterestHeart({ dealId, ...props }: InterestHeartProps) {
     if (!isLoggedIn) {
       setIsClickedInterest(false);
     }
-  }, [isLoading, isLoggedIn]);
+  }, [isLoggedIn, isLoading]);
 
   // 로그인 상태에 따른 관심버튼클릭 조건부 렌더링.
   const handleClickInterestButton = (
@@ -59,7 +59,5 @@ function InterestHeart({ dealId, ...props }: InterestHeartProps) {
     </button>
   );
 }
-
-const InterestHeartMemo = React.memo(InterestHeart);
 
 export default InterestHeart;

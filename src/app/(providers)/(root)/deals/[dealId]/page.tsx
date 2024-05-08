@@ -3,11 +3,13 @@ import Page from "@/components/Page";
 import formatPrice from "@/utils/formatPrice.util";
 import { useTimeDiff } from "@/utils/useTimeDiff";
 import Image from "next/image";
-import ButtonWrapperInDealsDetail from "./_components/ButtonWrapperInDealsDetail";
+import InterestAndViewsInDetail from "./_components/InterestAndViewsInDetail";
 
 async function DealDetailPage(props: { params: { dealId: string } }) {
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || "";
   const dealId = Number(props.params.dealId);
   const deal = await API.deals.getDeal(dealId);
+  const imageUrl = `${baseUrl}${deal.imgSrc}`;
 
   return (
     <Page>
@@ -21,7 +23,7 @@ async function DealDetailPage(props: { params: { dealId: string } }) {
           >
             {deal.imgSrc && (
               <Image
-                src={`http://localhost:5050${deal.imgSrc}`}
+                src={`${imageUrl}`}
                 width={300}
                 height={300}
                 alt={deal.title}
@@ -47,15 +49,12 @@ async function DealDetailPage(props: { params: { dealId: string } }) {
           </p>
           <p>{deal.content}</p>
         </div>
-        <div className="flex gap-x-1 text-xs md:text-sm items-center text-neutral-400 pb-10">
-          <span>관심 {deal.interest}</span>
-          <span>∙</span>
-          <span>조회 {deal.views}</span>
-          <ButtonWrapperInDealsDetail
-            dealId={dealId}
-            authorEmail={deal.authorEmail}
-          />
-        </div>
+        <InterestAndViewsInDetail
+          views={deal.views}
+          interest={deal.interest}
+          dealId={dealId}
+          authorEmail={deal.authorEmail}
+        />
       </section>
     </Page>
   );
