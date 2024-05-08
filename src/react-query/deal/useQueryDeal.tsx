@@ -5,5 +5,6 @@ export default function useQueryDeal({ dealId }: { dealId: number }) {
   return useQuery({
     queryKey: ["deal", dealId],
     queryFn: () => API.deals.getDeal(dealId),
+    staleTime: Infinity,
   });
 }

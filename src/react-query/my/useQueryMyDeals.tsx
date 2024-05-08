@@ -8,6 +8,7 @@ export default function useQueryMyDeals() {
   return useQuery({
     queryKey: ["myDeals"],
     queryFn: API.deals.getMyDeals,
+    staleTime: Infinity,
     enabled: isLoggedIn,
   });
 }

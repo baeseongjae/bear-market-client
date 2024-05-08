@@ -5,6 +5,7 @@ export default function useQueryMyInterestedDeals(dealIds: number[]) {
   return useQuery({
     queryKey: ["myInterestedDeals", dealIds],
     queryFn: () => API.deals.getMyInterestedDeals({ dealIds }),
+    staleTime: Infinity,
     enabled: !!dealIds.length,
   });
 }

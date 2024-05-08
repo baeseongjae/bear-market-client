@@ -8,6 +8,7 @@ export default function useQueryMyInterests() {
   return useQuery({
     queryKey: ["myInterests"],
     queryFn: API.deals.getMyInterests,
+    staleTime: Infinity,
     enabled: isLoggedIn,
   });
 }

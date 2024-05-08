@@ -5,5 +5,6 @@ export default function useQueryDeals() {
   return useQuery({
     queryKey: ["deals"],
     queryFn: API.deals.getDeals,
+    staleTime: Infinity,
   });
 }
