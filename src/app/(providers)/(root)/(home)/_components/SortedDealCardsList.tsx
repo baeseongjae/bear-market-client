@@ -3,17 +3,18 @@
 import DealCardsList from "@/components/DealCardsList";
 import { useSearch } from "@/contexts";
 import { Deal } from "@/types/Deal.type";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 function SortedDealCardsList({ deals }: { deals: Deal[] }) {
   const orderBys = ["최신순", "조회순", "관심순"];
   const [orderBy, setOrderBy] = useState<string>("최신순");
-  const [dealData, setDealData] = useState<Deal[]>([]);
+  const [dealData, setDealData] = useState<Deal[]>(deals);
   const { search } = useSearch();
+  // const { data: deals } = useQueryDeals();
 
-  useEffect(() => {
+  const sortedAndFilteredDeals = useMemo(() => {
     // *0. props데이터 복사본 생성
-    let sortedDealData = [...deals];
+    let sortedDealData: Deal[] = deals ? [...deals] : [];
 
     // *1. 정렬 로직
     switch (orderBy) {
@@ -31,14 +32,16 @@ function SortedDealCardsList({ deals }: { deals: Deal[] }) {
     }
 
     // *2. 검색어 기반 필터링
-    let filteredSortedDealData = search
+    return search
       ? sortedDealData.filter((deal) =>
           deal.title.toLowerCase().includes(search.toLowerCase())
         )
       : sortedDealData;
-
-    setDealData(filteredSortedDealData);
   }, [orderBy, search, deals]);
+
+  useEffect(() => {
+    setDealData(sortedAndFilteredDeals);
+  }, [sortedAndFilteredDeals]);
 
   const handleClickSortButton: React.MouseEventHandler<HTMLButtonElement> = (
     e
