@@ -11,11 +11,19 @@ export default function useMutationUpdateDeal({ dealId }: { dealId: number }) {
     mutationFn: ({ formData, dealId }) =>
       API.deals.updateDeal(formData, dealId),
     onSuccess: () => {
+      router.push("/my/deals");
       queryClient.invalidateQueries({
         exact: true,
         queryKey: ["deal", dealId],
       }); // 'deal' 쿼리 캐시 무효화
-      router.push("/my/deals");
+      queryClient.invalidateQueries({
+        exact: true,
+        queryKey: ["myDeals"],
+      });
+      queryClient.invalidateQueries({
+        exact: true,
+        queryKey: ["deals"],
+      });
     },
   });
 }

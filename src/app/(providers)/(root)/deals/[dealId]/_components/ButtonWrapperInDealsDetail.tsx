@@ -37,21 +37,21 @@ function ButtonWrapperInDealsDetail({
   }, [dealId]);
 
   return (
-    <div className="flex items-center text-[15px] gap-x-8 ml-auto">
+    <div className="flex items-center text-xl gap-x-4 ml-auto">
       {email === authorEmail ? (
         <>
-          <Link
-            href={`./${dealId}/edit`}
-            className="bg-primary-100 text-white font-semibold p-3 rounded-lg hover:bg-primary-100/70 inline-block"
-          >
-            <MdDelete />
-          </Link>
           <ContainerButton
             onClick={handleClickDeleteDeal}
-            className="inline-block p-3"
+            className="inline-block p-3 bg-transparent rounded-full"
+          >
+            <MdDelete />
+          </ContainerButton>
+          <Link
+            href={`./${dealId}/edit`}
+            className="text-white font-semibold p-3 rounded-full hover:bg-primary-100 inline-block"
           >
             <FaEdit />
-          </ContainerButton>
+          </Link>
         </>
       ) : (
         <InterestHeart dealId={dealId} />
