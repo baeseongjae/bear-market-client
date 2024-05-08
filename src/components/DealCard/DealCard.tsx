@@ -3,7 +3,7 @@ import formatPrice from "@/utils/formatPrice.util";
 import { useTimeDiff } from "@/utils/useTimeDiff";
 import Image from "next/image";
 import Link from "next/link";
-import ButtonWrapperByUser from "./ButtonWrapperByUser/ButtonWrapperByUser";
+import InterestAndViews from "./InterestAndViews";
 
 interface DealCardProps {
   deal: Deal;
@@ -17,7 +17,12 @@ function DealCard({ deal }: DealCardProps) {
     <Link href={`/deals/${deal.id}`} className="relative">
       <div className="w-full h-72 relative bg-primary-100/80 rounded-3xl border border-neutral-300 shadow-xl overflow-hidden hover:scale-110 duration-500">
         {deal.imgSrc && (
-          <Image src={imageUrl} fill objectFit="cover" alt={deal.title} />
+          <Image
+            src={imageUrl}
+            fill
+            style={{ objectFit: "cover" }}
+            alt={deal.title}
+          />
         )}
       </div>
       <div>
@@ -29,15 +34,12 @@ function DealCard({ deal }: DealCardProps) {
           {formatPrice(deal.price)}
         </p>
         <p>{deal.location}</p>
-        <div className="flex gap-x-1 items-center text-neutral-400 text-xs md:text-sm">
-          <span>관심 {deal.interest}</span>
-          <span>∙</span>
-          <span>조회 {deal.views}</span>
-          <ButtonWrapperByUser
-            dealId={deal.id}
-            authorEmail={deal.authorEmail}
-          />
-        </div>
+        <InterestAndViews
+          views={deal.views}
+          interest={deal.interest}
+          dealId={deal.id}
+          authorEmail={deal.authorEmail}
+        />
       </div>
     </Link>
   );
