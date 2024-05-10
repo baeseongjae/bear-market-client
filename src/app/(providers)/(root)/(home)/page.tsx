@@ -10,8 +10,8 @@ async function HomePage() {
     <Page>
       <section>
         <Heading className="mb-3">전체 판매글</Heading>
-        <p className="text-xl">테스트용 이메일: bae@naver.com</p>
-        <p className="text-xl">테스트용 패스워드: bae123</p>
+        {/* <p className="text-xl">테스트용 이메일: bae@naver.com</p> */}
+        {/* <p className="text-xl">테스트용 패스워드: bae123</p> */}
         <SortedDealCardsList deals={deals} />
       </section>
     </Page>

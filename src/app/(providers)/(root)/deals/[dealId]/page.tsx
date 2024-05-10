@@ -1,8 +1,11 @@
 import API from "@/api/index.api";
+import Heading from "@/components/Heading";
 import Page from "@/components/Page";
 import formatPrice from "@/utils/formatPrice.util";
 import { useTimeDiff } from "@/utils/useTimeDiff";
 import Image from "next/image";
+import { GiBearFace } from "react-icons/gi";
+import PopularDeals from "../../my/interests/_components/PopularDeals";
 import InterestAndViewsInDetail from "./_components/InterestAndViewsInDetail";
 
 async function DealDetailPage(props: { params: { dealId: string } }) {
@@ -21,7 +24,7 @@ async function DealDetailPage(props: { params: { dealId: string } }) {
               deal.imgSrc ? "bg-white" : "bg-primary-100"
             }`}
           >
-            {deal.imgSrc && (
+            {deal.imgSrc ? (
               <Image
                 src={`${imageUrl}`}
                 width={300}
@@ -29,6 +32,13 @@ async function DealDetailPage(props: { params: { dealId: string } }) {
                 alt={deal.title}
                 className="h-full rounded-xl"
               />
+            ) : (
+              <div className="absolute top-[32px] gap-x-1 flex items-center justify-center">
+                <span className="text-4xl">
+                  <GiBearFace />
+                </span>
+                <span className="text-lg">현재 등록된 이미지가 없습니다.</span>
+              </div>
             )}
           </div>
         </div>
@@ -55,6 +65,10 @@ async function DealDetailPage(props: { params: { dealId: string } }) {
           dealId={dealId}
           authorEmail={deal.authorEmail}
         />
+      </section>
+      <section className="pt-20">
+        <Heading>인기 판매글</Heading>
+        <PopularDeals />
       </section>
     </Page>
   );
